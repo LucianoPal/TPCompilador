@@ -17,10 +17,11 @@ Digito = [0-9]
 Numero = {Digito} | ({Numero}{Digito}*) | (- | lambda)
 Real = - ({Numero}+ "." {Numero}*) | ({Numero}* "." {Numero}+)
 Blanco = \t|\f|\n|" "
-CaracterEspecial = "+"|","|"-"|"."|":"|";"
+CaracterEspecial = "!"|"#"|"$"|"%"|"&"|"'"|"("|")"|"*"|"+"|","|"-"|"."|"/"|":"|";"|"{"|"="|"}"|"?"|"@"|"["|"\"|"]"|"^"|"_"|"`"|"{"|"|"|"}"|"~"|"á"|"í"|"ó"|"ú"|"ª"|"º"|"¿"|"⌐"
 String = {Letra} | {Blanco} | {Digito} | {CaracterEspecial} | ({String}{Letra}) | ({String}{Blanco}) | ({String}{Digito}) | ({String}{CaracterEspecial})
 Nombre = {Digito} | {Letra} | "_" | ({Nombre}{Digito}) | ({Nombre}{Letra}) | ({Nombre}"_")
 
+-----DUDA-----
 While = while | WHILE
 If = if | IF
 
@@ -34,15 +35,16 @@ CondicionLogica = ("(" {Condicion} ")") | ("(" {Condicion} ")") | ({CondicionLog
 Expresion = {VariableN} | {VariableS}
 Condicion = ({Expresion} "<" {Expresion}) | ({Expresion} "<=" {Expresion}) | ({Expresion} ">" {Expresion}) | ({Expresion} ">=" {Expresion}) | ({Expresion} "==" {Expresion}) | ({Expresion} "<>" {Expresion})
 
+-----DUDA-----
 Declaracion = "DECLARE" {Blanco} {ListaDeDeclaraciones} {Blanco} "ENDDECLARE"
-ListaDeDeclaraciones = {LineaDeDeclaracion} | ({ListaDeDeclaraciones} {Blanco} {LineaDeDeclaracion})
+ListaDeDeclaraciones := {LineaDeDeclaracion} | ({ListaDeDeclaraciones} {Blanco} {LineaDeDeclaracion})
 Variable = {Nombre}
 Tipo = {Numero} | {Real} | {String}
 LineaDeDeclaracion = ("[" {VariableTipo} "]")
 VariableTipo = ({Variable} "," {VariableTipo} "," {Tipo}) | ({Variable} {FinDeDeclaracion} {Tipo})
 FinDeDeclaracion = "]:=["
 
-Programa = "BEGIN.PROGRAM" {Blanco} {ListaDeSentencias} {Blanco} "END.PROGRAM"
+Programa = BEGIN.PROGRAM {Blanco} {ListaDeSentencias} {Blanco} END.PROGRAM
 ListaDeSentencias = {LineaDeSentencia} | ({ListaDeSentencias} {Blanco} {LineaDeSentencia})
 LineaDeSentencia = {Asignacion} | {Comentario} | {Salida} | {CondicionLogica} | {Condicion}
 
