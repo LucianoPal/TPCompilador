@@ -1,4 +1,4 @@
-package interfazGrafica;
+package main;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -198,7 +199,14 @@ public class IDECompilador extends JFrame {
 		JButton btnRealizarAnalisis = new JButton("Realizar An\u00E1lisis");
 		btnRealizarAnalisis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				try {
+					Lexico Lexer = new Lexico(fr);
+					Lexer.next_token();
+					//resultadoAnalisis.setText(a.toString());
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		GridBagConstraints gbc_btnRealizarAnalisis = new GridBagConstraints();
