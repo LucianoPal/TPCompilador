@@ -14,42 +14,37 @@ import java_cup.runtime.Symbol;
 
 Letra = [a-zA-Z]
 Digito = [0-9]
-Numero = {Digito} | ({Numero}{Digito}*) | (- | lambda)
-Real = - ({Numero}+ "." {Numero}*) | ({Numero}* "." {Numero}+)
-Blanco = \t|\f|\n|" "
+Numero = {Digito}+ | (- {Digito}+)
+Real = ({Numero}+ "." {Digito}*) | ({Numero}* "." {Digito}+)
+Blanco = \t|\f|\n|\r|\r\n|" "
 CaracterEspecial = "+"|","|"-"|"."|":"|";"
-String = {Letra} | {Blanco} | {Digito} | {CaracterEspecial} | ({String}{Letra}) | ({String}{Blanco}) | ({String}{Digito}) | ({String}{CaracterEspecial})
-Nombre = {Digito} | {Letra} | "_" | ({Nombre}{Digito}) | ({Nombre}{Letra}) | ({Nombre}"_")
-
+String = ({Letra} | {Blanco} | {Digito} | {CaracterEspecial})+
+Nombre = ({Digito} | {Letra} | "_")+
 While = while | WHILE
 If = if | IF
-
 Print = print | PRINT
-VariableN = {Nombre}
-VariableS = {Nombre}
-Asignacion = ({VariableN} ":=" {Numero}) | ({VariableN} ":=" {Real}) | ({VariableS} ":=" {String})
-Comentario = "</" {String} "/>"
-Salida = {Print} \" {String} \"
-CondicionLogica = ("(" {Condicion} ")") | ("(" {Condicion} ")") | ({CondicionLogica} "&&" {Condicion}) | ({CondicionLogica} "||" {Condicion})
-Expresion = {VariableN} | {VariableS}
-Condicion = ({Expresion} "<" {Expresion}) | ({Expresion} "<=" {Expresion}) | ({Expresion} ">" {Expresion}) | ({Expresion} ">=" {Expresion}) | ({Expresion} "==" {Expresion}) | ({Expresion} "<>" {Expresion})
-
-Declaracion = "DECLARE" {Blanco} {ListaDeDeclaraciones} {Blanco} "ENDDECLARE"
-ListaDeDeclaraciones = {LineaDeDeclaracion} | ({ListaDeDeclaraciones} {Blanco} {LineaDeDeclaracion})
-Variable = {Nombre}
-Tipo = {Numero} | {Real} | {String}
-LineaDeDeclaracion = ("[" {VariableTipo} "]")
-VariableTipo = ({Variable} "," {VariableTipo} "," {Tipo}) | ({Variable} {FinDeDeclaracion} {Tipo})
-FinDeDeclaracion = "]:=["
-
-Programa = "BEGIN.PROGRAM" {Blanco} {ListaDeSentencias} {Blanco} "END.PROGRAM"
-ListaDeSentencias = {LineaDeSentencia} | ({ListaDeSentencias} {Blanco} {LineaDeSentencia})
-LineaDeSentencia = {Asignacion} | {Comentario} | {Salida} | {CondicionLogica} | {Condicion}
-
-Inlist = "INLIST(" {VariableN} ",[" {ListaDeCte} "])"
-ListaDeCte = {ListaReal} | {ListaNumero}
-ListaReal = {Real} | ({ListaReal} ";" {Real})
-ListaNumero = {Numero} | ({ListaNumero} ";" {Numero})
+DeclareB = declare | DECLARE
+DeclareE = enddeclare | ENDDECLARE
+ProgramB = BEGIN.PROGRAM | begin.program
+ProgramE = END.PROGRAM | end.program
+InList = inlist | INLIST
+VarId = {Nombre}
+Asignacion = ":="
+ComA = "</"
+ComC = "/>"
+And = "&&"
+Or = "||"
+Mayor = ">"
+MayorI = ">="
+Menor = "<"
+MenorI = "<="
+Distinto = "<>"
+ParA = "("
+ParC = ")"
+LlaveA = "{"
+LlaveC = "}"
+CorcheteA = "["
+CorcheteC = "]"
 
 
 %%
@@ -62,15 +57,29 @@ ListaNumero = {Numero} | ({ListaNumero} ";" {Numero})
 {Nombre} 				{System.out.println("Token Nombre encontrado, Lexema "+ yytext());}
 {While} 				{System.out.println("Token While encontrado, Lexema "+ yytext());}
 {If} 					{System.out.println("Token If encontrado, Lexema "+ yytext());}
+{Print}					{System.out.println("Token Print encontrado, Lexema "+ yytext());}
+{DeclareB}				{System.out.println("Token DeclareB encontrado, Lexema "+ yytext());}
+{DeclareE}				{System.out.println("Token DeclareE encontrado, Lexema "+ yytext());}
+{ProgramB}				{System.out.println("Token ProgramB encontrado, Lexema "+ yytext());}
+{ProgramE}				{System.out.println("Token ProgramE encontrado, Lexema "+ yytext());}
+{InList}				{System.out.println("Token InList encontrado, Lexema "+ yytext());}
+{VarId}					{System.out.println("Token VarId encontrado, Lexema "+ yytext());}
 {Asignacion}			{System.out.println("Token Asignacion encontrado, Lexema "+ yytext());}
-{Comentario}			{System.out.println("Token Comentario encontrado, Lexema "+ yytext());}
-{Salida}				{System.out.println("Token Salida encontrado, Lexema "+ yytext());}
-{CondicionLogica}		{System.out.println("Token CondicionLogica encontrado, Lexema "+ yytext());}
-{Condicion}				{System.out.println("Token Condicion encontrado, Lexema "+ yytext());}
-{Declaracion}			{System.out.println("Token Declaracion encontrado, Lexema "+ yytext());}
-{LineaDeDeclaracion}	{System.out.println("Token LineaDeDeclaracion encontrado, Lexema "+ yytext());}
-{Programa}				{System.out.println("Token Programa encontrado, Lexema "+ yytext());}
-{Inlist}				{System.out.println("Token Inlist encontrado, Lexema "+ yytext());}
+{ComA}					{System.out.println("Token ComA encontrado, Lexema "+ yytext());}
+{ComC}					{System.out.println("Token ComC encontrado, Lexema "+ yytext());}
+{And}					{System.out.println("Token And encontrado, Lexema "+ yytext());}
+{Or}					{System.out.println("Token Or encontrado, Lexema "+ yytext());}
+{Mayor}					{System.out.println("Token Mayor encontrado, Lexema "+ yytext());}
+{MayorI}				{System.out.println("Token MayorI encontrado, Lexema "+ yytext());}
+{Menor}					{System.out.println("Token Menor encontrado, Lexema "+ yytext());}
+{MenorI}				{System.out.println("Token MenorI encontrado, Lexema "+ yytext());}
+{Distinto}				{System.out.println("Token Distinto encontrado, Lexema "+ yytext());}
+{ParA}					{System.out.println("Token ParA encontrado, Lexema "+ yytext());}
+{ParC}					{System.out.println("Token ParC encontrado, Lexema "+ yytext());}
+{LlaveA}				{System.out.println("Token LlaveA encontrado, Lexema "+ yytext());}
+{LlaveC}				{System.out.println("Token LlaveC encontrado, Lexema "+ yytext());}
+{CorcheteA}				{System.out.println("Token CorcheteA encontrado, Lexema "+ yytext());}
+{CorcheteC}				{System.out.println("Token CorcheteC encontrado, Lexema "+ yytext());}
 
 }
 
