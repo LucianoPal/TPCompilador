@@ -27,7 +27,7 @@ import java_cup.runtime.Symbol;
 
 	private boolean verify_int(String x) {
 		int i = Integer.parseInt(x);
-		if (i > -MAX_INT || i > MAX_INT) {
+		if (i < -MAX_INT || i > MAX_INT) {
 			throw new NumberFormatException();
 		}
 		return true;
@@ -42,12 +42,12 @@ import java_cup.runtime.Symbol;
 %}
 
 While = while | WHILE
-If = if | IF
+If = if | IF | If
 Print = print | PRINT
 DeclareB = declare | DECLARE
 DeclareE = enddeclare | ENDDECLARE
-ProgramB = begin.program | BEGIN.PROGRAM
-ProgramE = end.program | END.PROGRAM
+ProgramB = BEGIN.PROGRAM | begin.program
+ProgramE = END.PROGRAM | end.program
 InList = inlist | INLIST
 VarId = {Nombre}
 Comentario = "</" ~"/>"
@@ -59,27 +59,30 @@ MayorI = ">="
 Menor = "<"
 MenorI = "<="
 Distinto = "<>"
-Igual = "=="
+Igual = "==" | "="
 Suma = "+"
 Resta = "-"
 Multiplicacion = "*"
 Division = "/"
-
-Asignacion = ":="
-Letra = [a-zA-Z]
-Digito = [0-9]
-Numero = {Digito}+ | (- {Digito}+)
-Real = ({Numero}+ "." {Digito}*) | ({Numero}* "." {Digito}+)
-Blanco = \t|\f|\n|\r|\r\n|" "
-CaracterEspecial = "!"|"#"|"$"|"%"|"&"|"'"|"("|")"|"*"|"+"|","|"-"|"."|"/"|":"|";"|"{"|"="|"}"|"?"|"@"|"["|"]"|"^"|"_"|"`"|"{"|"|"|"}"|"~"|"\""
-String = ({Letra} | {Blanco} | {Digito} | {CaracterEspecial})+
-Nombre = ({Digito} | {Letra} | "_")+
 ParA = "("
 ParC = ")"
 LlaveA = "{"
 LlaveC = "}"
 CorcheteA = "["
 CorcheteC = "]"
+Coma = ","
+PuntoC = ";"
+
+Asignacion = ":="
+Letra = [a-zA-Z]
+Digito = [0-9]
+Numero = {Digito}+ | (- {Digito}+)
+Real = ({Numero}+ "." {Digito}*) | ({Numero}* "." {Digito}+)
+Blanco = [ \r\n]
+EspacioBlanco = [ \t\f\r\n]
+CaracterEspecial = {Letra}|{Digito}|"!"|"#"|"$"|"%"|"&"|"'"|"("|")"|"*"|"+"|","|"-"|"."|"/"|":"|";"|"{"|"="|"}"|"?"|"@"|"["|"]"|"^"|"_"|"`"|"{"|"|"|"}"|"~"|"\""
+String = {Blanco} | {CaracterEspecial}*
+Nombre = ({Digito} | {Letra} | "_")+
 
 
 %%
@@ -88,15 +91,14 @@ CorcheteC = "]"
 
 {Comentario}			{/**/}
 
-{While}					{System.out.println("Token While encontrado, Lexema "+ yytext());}
-{If}					{System.out.println("Token If encontrado, Lexema "+ yytext());}
+{While} 				{System.out.println("Token While encontrado, Lexema "+ yytext());}
+{If} 					{System.out.println("Token If encontrado, Lexema "+ yytext());}
 {Print}					{System.out.println("Token Print encontrado, Lexema "+ yytext());}
 {DeclareB}				{System.out.println("Token DeclareB encontrado, Lexema "+ yytext());}
 {DeclareE}				{System.out.println("Token DeclareE encontrado, Lexema "+ yytext());}
 {ProgramB}				{System.out.println("Token ProgramB encontrado, Lexema "+ yytext());}
 {ProgramE}				{System.out.println("Token ProgramE encontrado, Lexema "+ yytext());}
 {InList}				{System.out.println("Token InList encontrado, Lexema "+ yytext());}
-{VarId}					{System.out.println("Token VarId encontrado, Lexema "+ yytext());}
 
 {ParA}					{System.out.println("Token ParA encontrado, Lexema "+ yytext());}
 {ParC}					{System.out.println("Token ParC encontrado, Lexema "+ yytext());}
@@ -117,8 +119,10 @@ CorcheteC = "]"
 {Resta}					{System.out.println("Token Resta encontrado, Lexema "+ yytext());}
 {Multiplicacion}		{System.out.println("Token Multiplicacion encontrado, Lexema "+ yytext());}
 {Division}				{System.out.println("Token Division encontrado, Lexema "+ yytext());}
-
+{Coma}					{System.out.println("Token Coma encontrado, Lexema "+ yytext());}
+{PuntoC}				{System.out.println("Token PuntoC encontrado, Lexema "+ yytext());}
 {Asignacion}			{System.out.println("Token Asignacion encontrado, Lexema "+ yytext());}
+
 {Numero}				{
 							verify_int(yytext());
 							System.out.println("Token Numero encontrado, Lexema "+ yytext());
@@ -127,10 +131,14 @@ CorcheteC = "]"
 							verify_real(yytext());
 							System.out.println("Token Real encontrado, Lexema "+ yytext());
 						}
-{String}				{
+"\"" [^\"\n\r]* "\""				{
 							verify_string(yytext());
 							System.out.println("Token String encontrado, Lexema "+ yytext());
 						}
+
+{EspacioBlanco}			{ /* ignore */ }
+
+{VarId}					{System.out.println("Token VarId encontrado, Lexema "+ yytext());}
 
 }
 
