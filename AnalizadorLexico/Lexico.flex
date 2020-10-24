@@ -41,14 +41,14 @@ import java_cup.runtime.Symbol;
 	}
 %}
 
-While = "while" | "WHILE"
-If = "if" | "IF"
-Print = "print" | "PRINT"
-DeclareB = "declare" | "DECLARE"
-DeclareE = "enddeclare" | "ENDDECLARE"
-ProgramB = "BEGIN.PROGRAM" | "begin.program"
-ProgramE = "END.PROGRAM" | "end.program"
-InList = "inlist" | "INLIST"
+While = while | WHILE
+If = if | IF
+Print = print | PRINT
+DeclareB = declare | DECLARE
+DeclareE = enddeclare | ENDDECLARE
+ProgramB = begin.program | BEGIN.PROGRAM
+ProgramE = end.program | END.PROGRAM
+InList = inlist | INLIST
 VarId = {Nombre}
 Comentario = "</" ~"/>"
 
@@ -88,14 +88,14 @@ CorcheteC = "]"
 
 {Comentario}			{/**/}
 
-"WHILE" 				{System.out.println("Token While encontrado, Lexema "+ yytext());}
-"IF" 					{System.out.println("Token If encontrado, Lexema "+ yytext());}
-"PRINT"					{System.out.println("Token Print encontrado, Lexema "+ yytext());}
-"DECLARE"				{System.out.println("Token DeclareB encontrado, Lexema "+ yytext());}
-"ENDDECLARE"			{System.out.println("Token DeclareE encontrado, Lexema "+ yytext());}
-"BEGIN.PROGRAM"			{System.out.println("Token ProgramB encontrado, Lexema "+ yytext());}
-"END.PROGRAM"			{System.out.println("Token ProgramE encontrado, Lexema "+ yytext());}
-"INLIST"				{System.out.println("Token InList encontrado, Lexema "+ yytext());}
+{While}					{System.out.println("Token While encontrado, Lexema "+ yytext());}
+{If}					{System.out.println("Token If encontrado, Lexema "+ yytext());}
+{Print}					{System.out.println("Token Print encontrado, Lexema "+ yytext());}
+{DeclareB}				{System.out.println("Token DeclareB encontrado, Lexema "+ yytext());}
+{DeclareE}				{System.out.println("Token DeclareE encontrado, Lexema "+ yytext());}
+{ProgramB}				{System.out.println("Token ProgramB encontrado, Lexema "+ yytext());}
+{ProgramE}				{System.out.println("Token ProgramE encontrado, Lexema "+ yytext());}
+{InList}				{System.out.println("Token InList encontrado, Lexema "+ yytext());}
 {VarId}					{System.out.println("Token VarId encontrado, Lexema "+ yytext());}
 
 {ParA}					{System.out.println("Token ParA encontrado, Lexema "+ yytext());}
