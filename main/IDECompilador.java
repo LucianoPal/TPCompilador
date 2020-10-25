@@ -160,12 +160,10 @@ public class IDECompilador extends JFrame {
 					String texto= "";
 					String linea= "";
 					while((linea=br.readLine()) != null) {
-						texto += linea+"\n"
-;					}
+						texto += linea+"\n";					
+					}
 					txaArchivo.setText(texto);
-					fr.close();
-					fr=null;
-					fr= new FileReader(archivo);
+					fr = new FileReader(archivo);
 				}catch(Exception ex) {
 					
 				}
@@ -179,7 +177,7 @@ public class IDECompilador extends JFrame {
 		
 
 		
-		JLabel lblResutadosDelAnlisis = new JLabel("Resutados del an\u00E1lisis l\u00E9xico");
+		JLabel lblResutadosDelAnlisis = new JLabel("Resultados del an\u00E1lisis l\u00E9xico");
 		lblResutadosDelAnlisis.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		GridBagConstraints gbc_lblResutadosDelAnlisis = new GridBagConstraints();
 		gbc_lblResutadosDelAnlisis.gridwidth = 3;
@@ -188,14 +186,14 @@ public class IDECompilador extends JFrame {
 		gbc_lblResutadosDelAnlisis.gridy = 8;
 		contentPane.add(lblResutadosDelAnlisis, gbc_lblResutadosDelAnlisis);
 		
-		JTextPane resultadoAnalisis = new JTextPane();
+		TextArea resultadoAnalisis = new TextArea();
 		resultadoAnalisis.setEditable(false);
 		GridBagConstraints gbc_resultadoAnalisis = new GridBagConstraints();
 		gbc_resultadoAnalisis.insets = new Insets(0, 0, 5, 5);
 		gbc_resultadoAnalisis.gridheight = 3;
-		gbc_resultadoAnalisis.gridwidth = 12;
+		gbc_resultadoAnalisis.gridwidth = 17;
 		gbc_resultadoAnalisis.fill = GridBagConstraints.BOTH;
-		gbc_resultadoAnalisis.gridx = 3;
+		gbc_resultadoAnalisis.gridx = 1;
 		gbc_resultadoAnalisis.gridy = 9;
 		contentPane.add(resultadoAnalisis, gbc_resultadoAnalisis);
 		
@@ -205,7 +203,7 @@ public class IDECompilador extends JFrame {
 				try {
 					Lexico Lexer = new Lexico(fr);
 					Lexer.next_token();
-					//resultadoAnalisis.setText(a.toString());
+					resultadoAnalisis.setText(Lexer.s);
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

@@ -15,6 +15,8 @@ public class Lexico implements java_cup.runtime.Scanner {
 
   /** This character denotes the end of file. */
   public static final int YYEOF = -1;
+  
+  public String s = "";
 
   /** Initial size of the lookahead buffer. */
   private static final int ZZ_BUFFERSIZE = 16384;
@@ -889,134 +891,160 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 38: break;
           case 3:
             { System.out.println("Token ParA encontrado, Lexema "+ yytext());
+            s=s+"Token ParA encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 39: break;
           case 4:
             { System.out.println("Token ParC encontrado, Lexema "+ yytext());
+            s=s+"Token ParC encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 40: break;
           case 5:
             { System.out.println("Token Multiplicacion encontrado, Lexema "+ yytext());
+            s=s+"Token Multiplicacion encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 41: break;
           case 6:
             { System.out.println("Token Suma encontrado, Lexema "+ yytext());
+            s=s+"Token Suma encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 42: break;
           case 7:
             { System.out.println("Token Coma encontrado, Lexema "+ yytext());
+            s=s+"Token Coma encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 43: break;
           case 8:
             { System.out.println("Token Resta encontrado, Lexema "+ yytext());
+            s=s+"Token Resta encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 44: break;
           case 9:
             { System.out.println("Token Division encontrado, Lexema "+ yytext());
+            s=s+"Token Division encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 45: break;
           case 10:
             { verify_int(yytext());
-							System.out.println("Token Numero encontrado, Lexema "+ yytext());
+				System.out.println("Token Numero encontrado, Lexema "+ yytext());
+				s=s+"Token Numero encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 46: break;
           case 11:
             { System.out.println("Token PuntoC encontrado, Lexema "+ yytext());
+            s=s+"Token PuntoC encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 47: break;
           case 12:
             { System.out.println("Token Menor encontrado, Lexema "+ yytext());
+            s=s+"Token Menor encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 48: break;
           case 13:
             { System.out.println("Token Igual encontrado, Lexema "+ yytext());
+            s=s+"Token Igual encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 49: break;
           case 14:
             { System.out.println("Token Mayor encontrado, Lexema "+ yytext());
+            s=s+"Token Mayor encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 50: break;
           case 15:
             { System.out.println("Token VarId encontrado, Lexema "+ yytext());
+            s=s+"Token VarId encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 51: break;
           case 16:
             { System.out.println("Token CorcheteA encontrado, Lexema "+ yytext());
+            s=s+"Token CorcheteA encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 52: break;
           case 17:
             { System.out.println("Token CorcheteC encontrado, Lexema "+ yytext());
+            s=s+"Token CorcheteC encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 53: break;
           case 18:
             { System.out.println("Token LlaveA encontrado, Lexema "+ yytext());
+            s=s+"Token LlaveA encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 54: break;
           case 19:
             { System.out.println("Token LlaveC encontrado, Lexema "+ yytext());
+            s=s+"Token LlaveC encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 55: break;
           case 20:
             { verify_string(yytext());
 							System.out.println("Token String encontrado, Lexema "+ yytext());
+							s=s+"Token String encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 56: break;
           case 21:
             { System.out.println("Token And encontrado, Lexema "+ yytext());
+            s=s+"Token And encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 57: break;
           case 22:
             { verify_real(yytext());
-							System.out.println("Token Real encontrado, Lexema "+ yytext());
+				System.out.println("Token Real encontrado, Lexema "+ yytext());
+				s=s+"Token Real encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 58: break;
           case 23:
             { System.out.println("Token Asignacion encontrado, Lexema "+ yytext());
+            s=s+"Token Asignacion encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 59: break;
           case 24:
             { System.out.println("Token MenorI encontrado, Lexema "+ yytext());
+            s=s+"Token MenorI encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 60: break;
           case 25:
             { System.out.println("Token Distinto encontrado, Lexema "+ yytext());
+            s=s+"Token Distinto encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 61: break;
           case 26:
             { System.out.println("Token MayorI encontrado, Lexema "+ yytext());
+            s=s+"Token MayorI encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 62: break;
           case 27:
             { System.out.println("Token If encontrado, Lexema "+ yytext());
+            s=s+"Token If encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 63: break;
           case 28:
             { System.out.println("Token Or encontrado, Lexema "+ yytext());
+            s=s+"Token Or encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 64: break;
@@ -1027,36 +1055,43 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 65: break;
           case 30:
             { System.out.println("Token Print encontrado, Lexema "+ yytext());
+            s=s+"Token Print encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 66: break;
           case 31:
             { System.out.println("Token While encontrado, Lexema "+ yytext());
+            s=s+"Token While encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 67: break;
           case 32:
             { System.out.println("Token InList encontrado, Lexema "+ yytext());
+            s=s+"Token InList encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 68: break;
           case 33:
             { System.out.println("Token DeclareB encontrado, Lexema "+ yytext());
+            s=s+"Token DeclareB encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 69: break;
           case 34:
             { System.out.println("Token DeclareE encontrado, Lexema "+ yytext());
+            s=s+"Token DeclareE encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 70: break;
           case 35:
             { System.out.println("Token ProgramE encontrado, Lexema "+ yytext());
+            s=s+"Token ProgramE encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 71: break;
           case 36:
             { System.out.println("Token ProgramB encontrado, Lexema "+ yytext());
+            s=s+"Token ProgramB encontrado, Lexema "+ yytext()+"\n";
             }
             // fall through
           case 72: break;
