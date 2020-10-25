@@ -155,7 +155,7 @@ public class IDECompilador extends JFrame {
 				txtNombre.setText(nombre);
 				
 				try {
-					FileReader fr = new FileReader(archivo);
+					fr = new FileReader(archivo);
 					BufferedReader br = new BufferedReader(fr);
 					String texto= "";
 					String linea= "";
@@ -163,6 +163,9 @@ public class IDECompilador extends JFrame {
 						texto += linea+"\n"
 ;					}
 					txaArchivo.setText(texto);
+					fr.close();
+					fr=null;
+					fr= new FileReader(archivo);
 				}catch(Exception ex) {
 					
 				}
