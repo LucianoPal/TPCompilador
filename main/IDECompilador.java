@@ -134,6 +134,7 @@ public class IDECompilador extends JFrame {
 					bw.write(txaArchivo.getText());
 					bw.close();
 					JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");
+					fr = new FileReader(rutaArchivo);
 				}catch (Exception ex){
 					
 				}
