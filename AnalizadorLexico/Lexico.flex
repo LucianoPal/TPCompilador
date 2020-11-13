@@ -87,7 +87,7 @@ Blanco = [ \r\n]
 EspacioBlanco = [ \t\f\r\n]
 CaracterEspecial = {Letra}|{Digito}|"!"|"#"|"$"|"%"|"&"|"'"|"("|")"|"*"|"+"|","|"-"|"."|"/"|":"|";"|"{"|"="|"}"|"?"|"@"|"["|"]"|"^"|"_"|"`"|"{"|"|"|"}"|"~"|"\""
 String = {Blanco} | {CaracterEspecial}*
-Nombre = ({Digito} | {Letra} | "_")+
+Nombre = ({Letra})+ ({Digito} | {Letra} | "_")*
 
 
 %%
