@@ -18,25 +18,29 @@ import java_cup.runtime.Symbol;
 	final int MAX_INT = Short.MAX_VALUE;
 	final float MAX_FLOAT = Float.MAX_VALUE;
 
-	private boolean verify_real(String x) {
+	private boolean verify_real(String x) throws Exception {
 		float f = Float.parseFloat(x);
 		if (f < -MAX_FLOAT || f > MAX_FLOAT) {
-			throw new NumberFormatException();
+			throw new Exception("La longitud del lexema "+x+" excede la esperada");
 		}
 		return true;
 	}
 
-	private boolean verify_int(String x) {
-		int i = Integer.parseInt(x);
-		if (i < -MAX_INT || i > MAX_INT) {
-			throw new NumberFormatException();
+	private boolean verify_int(String x) throws Exception {
+		try {
+			int i = Integer.parseInt(x);
+			if (i < -MAX_INT || i > MAX_INT) {
+				throw new Exception("La longitud del lexema "+x+" excede la esperada");
+			}
+		}catch (NumberFormatException e) {
+			throw new Exception("La longitud del lexema "+x+" excede la esperada");
 		}
 		return true;
 	}
 
-	private boolean verify_string(String x) {
+	private boolean verify_string(String x) throws Exception {
 		if (x.length() > MAX_STRING) {
-			throw new NumberFormatException();
+			throw new Exception("La longitud del lexema "+x+" excede la esperada");
 		}
 		return true;
 	}
