@@ -102,25 +102,7 @@ public class IDECompilador extends JFrame {
 		JButton btnGuardarArchivo = new JButton("Guardar");
 		btnGuardarArchivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nombreArchivo = txtNombre.getText();
-				String carpeta = System.getProperty("user.dir");
-				String rutaArchivo = carpeta + "/" + nombreArchivo;
-				
-				FileWriter fw = null;
-				try {
-					fw = new FileWriter(rutaArchivo);
-				}catch(IOException ex) {
-					Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,ex);
-				}
-				try { 
-					BufferedWriter bw = new BufferedWriter(fw);
-					bw.write(txaArchivo.getText());
-					bw.close();
-					JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");
-					fr = new FileReader(rutaArchivo);
-				}catch (Exception ex){
-					
-				}
+				saveFile(txaArchivo,true);
 			}
 		});
 		
@@ -199,6 +181,7 @@ public class IDECompilador extends JFrame {
 					JOptionPane.showMessageDialog(null,"No hay archivo cargado");
 				}else {
 					try {
+						saveFile(txaArchivo,false);
 						Lexico Lexer = new Lexico(fr);
 						Lexer.next_token();
 						resultadoAnalisis.setText(Lexer.s);
@@ -233,6 +216,31 @@ public class IDECompilador extends JFrame {
 		
 	
 
+	}
+	
+	public void saveFile(TextArea txaArchivo, Boolean jopt) {
+		String nombreArchivo = txtNombre.getText();
+		String carpeta = System.getProperty("user.dir");
+		String rutaArchivo = carpeta + "/" + nombreArchivo;
+		
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter(rutaArchivo);
+		}catch(IOException ex) {
+			Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,ex);
+		}
+		try { 
+			BufferedWriter bw = new BufferedWriter(fw);
+			bw.write(txaArchivo.getText());
+			bw.close();
+			fr = new FileReader(rutaArchivo);
+			if(jopt) {
+				JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");
+			}
+		}catch (Exception ex){
+			
+		}
+			
 	}
 
 }
