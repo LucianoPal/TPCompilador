@@ -11,8 +11,32 @@ import java_cup.runtime.Symbol;
 %line
 %column
 %char
+%init{
+	try{
+		String carpeta = System.getProperty("user.dir");
+		String ruta = carpeta + "/ts.txt";
+		f = new File(ruta);
+		bw = new BufferedWriter(new FileWriter(f,true));
+		listaSimbolos = new ArrayList<>();
+	}catch (IOException e){
+		e.printStackTrace();
+	}
+%init}
 
 %{
+	BufferedWriter bw;
+	File f;
+	ArrayList<String> listaSimbolos;
+	
+	public void writeSymbolTable(String s) throws IOException{
+		if(!listaSimbolos.contains(s.split(",")[0])){
+			bw.write(s);
+			bw.newLine();
+			bw.flush();
+			listaSimbolos.add(s.split(",")[0]);
+		}
+	}
+	
 	public String s = "";
 	final int MAX_STRING = 30;
 	final int MAX_INT = Short.MAX_VALUE;
@@ -219,16 +243,19 @@ Nombre = ({Letra})+ ({Digito} | {Letra} | "_")*
 							verify_int(yytext());
 							System.out.println("Token Numero encontrado, Lexema "+ yytext());
 							s=s+"Token Numero encontrado, Lexema "+ yytext()+"\n";
+							writeSymbolTable("_"+ yytext() + ",Numero,,"+ yytext()+ ",");
 						}
 {Real}					{
 							verify_real(yytext());
 							System.out.println("Token Real encontrado, Lexema "+ yytext());
 							s=s+"Token Real encontrado, Lexema "+ yytext()+"\n";
+							writeSymbolTable("_"+ yytext() + ",Real,,"+ yytext()+ ",");
 						}
 "\"" [^\"\n\r]* "\""				{
 							verify_string(yytext());
 							System.out.println("Token String encontrado, Lexema "+ yytext());
 							s=s+"Token String encontrado, Lexema "+ yytext()+"\n";
+							writeSymbolTable("_"+ yytext() + ",String,,"+ yytext()+ ","+ yytext().length());
 						}
 
 {EspacioBlanco}			{ /* ignore */ }
@@ -236,6 +263,7 @@ Nombre = ({Letra})+ ({Digito} | {Letra} | "_")*
 {VarId}					{
 						System.out.println("Token VarId encontrado, Lexema "+ yytext());
 						s=s+"Token VarId encontrado, Lexema "+ yytext()+"\n";
+						writeSymbolTable(yytext() + ",VarId,,"+",");
 						}
 
 }
