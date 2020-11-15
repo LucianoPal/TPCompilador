@@ -1,0 +1,39 @@
+/*Declaracion de Terminales*/
+terminal VarId, Numero, Real, String;
+
+
+
+<ListaDeSentencias> ::= <LineaDeSentencia> | <ListaDeSentencias> <LineaDeSentencia>
+<LineaDeSentencia> ::= <Asignacion> | <Salida> | <While> | <If>
+<Tipo> ::= INT | FLOAT | STRING
+<Cond> ::= <Condicion> | <CondicionLogica> | <InList>
+
+WHILE
+<While> ::= WHILE ( <Cond> ) { <ListaDeSentencias> }>
+
+DECISIONES
+<If> ::= IF ( <Cond > ) { <ListaDeSentencias> }
+
+ASIGNACIONES
+<Asignacion> ::= VarId := Numero | VarId := Real | VarId := String
+
+SALIDA
+<Salida> ::= PRINT “\”” String “\””
+
+CONDICIONES
+<CondicionLogica> ::= ( <Condicion> ) | <CondicionLogica> AND <Condicion> | <CondicionLogica> OR <Condicion>
+<Condicion> ::= VarId < VarId | VarId <= VarId | VarId > VarId | VarId >= VarId | VarId == VarId | VarId <> VarId | ( <CondicionLogica> )
+
+DECLARACIONES
+<Declaracion> ::= DECLARE <ListaDeDeclaraciones> ENDDECLARE
+<ListaDeDeclaraciones> ::= [ <LineaDeDeclaracion> ]
+<LineaDeDeclaracion>  ::= VarId ] <Asignacion> [ <Tipo> | VarId , <LineaDeDeclaracion> , <Tipo>
+
+PROGRAMA
+<Programa> ::= BEGIN.PROGRAM <ListaDeSentencias> END.PROGRAM
+
+INLIST
+<InList> ::= INLIST ( VarId , [ <ListaDeCte> ] )
+<ListaDeCte> ::= <ListaReal> | <ListaNumero> 
+<ListaReal> ::= Real | <ListaReal> ; Real
+<ListaNumero> ::= Numero | <ListaNumero> ; Numero
