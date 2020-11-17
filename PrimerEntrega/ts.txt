@@ -1,0 +1,29 @@
+suma,VarId,,,
+contador,VarId,,,
+d1,VarId,,,
+FLOAT,VarId,,,
+INT,VarId,,,
+actual,VarId,,,
+contar,VarId,,,
+palabra,VarId,,,
+STRING,VarId,,,
+var,VarId,,,
+_"Prueba.txt AnalizadorLexico",String,,"Prueba.txt AnalizadorLexico",29
+_0,Numero,,0,
+_76.5,Real,,76.5,
+_18.22,Real,,18.22,
+_9,Numero,,9,
+_1,Numero,,1,
+_0.342,Real,,0.342,
+_4.67,Real,,4.67,
+_"La variable suma",String,,"La variable suma",18
+_2,Numero,,2,
+and,VarId,,,
+_"actualesmayorque2ydistintode",String,,"actualesmayorque2ydistintode",30
+_"es mayor",String,,"es mayor",10
+Else,VarId,,,
+_"no es mayor que 2",String,,"no es mayor que 2",19
+_12,Numero,,12,
+_24,Numero,,24,
+_48,Numero,,48,
+_3.14,Real,,3.14,
