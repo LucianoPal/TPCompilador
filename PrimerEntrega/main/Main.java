@@ -15,7 +15,7 @@ public class Main {
 		ventana.setVisible(true);*/
 		
 		try {
-			FileReader f = new FileReader("C:\\Users\\German\\Documents\\GitHub\\TPCompilador\\PrimerEntrega\\prueba.txt");
+			FileReader f = new FileReader("prueba.txt");
 			Lexico Lexer = new Lexico(f);
 			Lexer.next_token();
 		} catch (FileNotFoundException ex) {

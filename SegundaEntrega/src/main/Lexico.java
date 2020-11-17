@@ -1186,6 +1186,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 82: break;
           default:
             zzScanError(ZZ_NO_MATCH);
+          
         }
       }
     }
