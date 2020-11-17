@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+import java.util.List;
+import java_cup.runtime.*;
+
+
+parser code
+{:
+    public void syntax_error(Symbol s){
+        System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
+            + s + " no reconocido. valor " + s.value );
+    }
+
+:}
+
+action code
+{:
+:}
+
+terminal While, If, Else, DeclareB, DeclareE, ProgramB, ProgramE, InList, PInt, PFloat, PString, VarId, And, Or, Mayor, MayorI, Menor, MenorI, Distinto, Igual, Suma, Resta, Multiplicacion, Division, ParA, ParC, LlaveA, LlaveC, CorcheteA, CorcheteC, Coma, PuntoC, Comilla, Asignacion, Numero, Real, String;
+
+non terminal pgm, listadesentencias, lineadesentencia, tipo, cond, while, if, asignacion, expresion, termino, factor, salida, condicionlogica, condicion, op_comp, declaracion, listadedeclaraciones, lineadedeclaracion, programa, inlist, listadecte, listareal, listanumero;
+
+start with pgm;
+
+pgm ::= declaracion programa {: System.out.println("pgm Regla 0 Compila correctamente llegando al simbolo start");:};
+
+listadesentencias ::= listadesentencias lineadesentencia {:System.out.println("[Regla 1] Sentencias"); :}
+			| lineadesentencia {:System.out.println("[Regla 2] Sentencia"); :}
+
+lineadesentencia ::= asignacion {:System.out.println("[Regla 3] Linea de sentencia - Asignación"); :}
+			| salida {:System.out.println("[Regla 4] Linea de sentencia - Salida"); :}
+			| while {:System.out.println("[Regla 5] Linea de sentencia - While"); :}
+			| if {:System.out.println("[Regla 6] Linea de sentencia - If"); :}
+
+tipo ::= PInt {:System.out.println("[Regla 7] Tipo - INT"); :}
+			| PFloat {:System.out.println("[Regla 8] Tipo - FLOAT"); :}
+			| PString {:System.out.println("[Regla 9] Tipo - STRING"); :}
+
+cond ::= condicion {:System.out.println("[Regla 10] Cond - Condición"); :}
+			| condicionlogica {:System.out.println("[Regla 11] Cond - Condicion Lógica"); :}
+			| inlist {:System.out.println("[Regla 12] Cond - InList"); :}
+
+while ::= While ParA cond ParC LlaveA listadesentencias LlaveC {:System.out.println("[Regla 13] While"); :}
+
+if ::= If ParA cond ParC LlaveA listadesentencias LlaveC {:System.out.println("[Regla 14] If"); :}
+			| If ParA cond ParC LlaveA listadesentencias LlaveC Else LlaveA listadesentencias LlaveC {:System.out.println("[Regla 15] If Else"); :}
+
+asignacion ::= VarId Asignacion expresion {:System.out.println("[Regla 16] Asignacion Expresion"); :}
+			| VarId Asignacion String {:System.out.println("[Regla 17] Asignacion String"); :}
+
+expresion ::= expresion Suma termino {:System.out.println("[Regla 18] Expresion + Termino"); :}
+			| expresion Resta termino {:System.out.println("[Regla 19] Expresion - Termino"); :}
+			| termino {:System.out.println("[Regla 20] Expresion Termino"); :}
+
+termino ::= termino Multiplicacion factor {:System.out.println("[Regla 21] Termino * Factor"); :}
+			| termino Division factor {:System.out.println("[Regla 22] Termino / Factor"); :}
+			| factor {:System.out.println("[Regla 23] Termino Factor"); :}
+
+factor ::= VarId {:System.out.println("[Regla 24] Factor VarId"); :}
+			| Numero {:System.out.println("[Regla 25] Factor Numero"); :}
+			| Real {:System.out.println("[Regla 26] Factor Real"); :}
+			| ParA expresion ParC {:System.out.println("[Regla 27] Factor Expresion"); :}
+
+salida ::= Print Comilla String Comilla {:System.out.println("[Regla 28] Factor Expresion"); :}
+
+condicionlogica ::= ParA condicion ParC {:System.out.println("[Regla 29] (Condicion)"); :}
+			| condicion And condicion {:System.out.println("[Regla 30] Condicion And Condicion"); :}
+			| condicion Or condicion {:System.out.println("[Regla 30] Condicion Or Condicion"); :}
+
+condicion ::= expresion op_comp expresion {:System.out.println("[Regla 31] Expresion Operacion Logica Expresion"); :}
+
+op_comp ::= Mayor {:System.out.println("[Regla 32] Operacion Mayor"); :}
+			| MayorI {:System.out.println("[Regla 32] Operacion MayorI"); :}
+			| Menor {:System.out.println("[Regla 32] Operacion Menor"); :}
+			| MenorI {:System.out.println("[Regla 32] Operacion MenorI"); :}
+			| Distinto {:System.out.println("[Regla 32] Operacion Distinto"); :}
+			| Igual {:System.out.println("[Regla 32] Operacion Igual"); :}
