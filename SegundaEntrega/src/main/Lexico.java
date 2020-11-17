@@ -1057,8 +1057,8 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 61: break;
           case 21:
             { verify_string(yytext());						
-							s=s+"Token Cost_String encontrado, Lexema "+ yytext()+"\n";
-							writeSymbolTable("_"+ yytext() + ",Cost_String,,"+ yytext()+ ","+ yytext().length());
+							s=s+"Token Const_String encontrado, Lexema "+ yytext()+"\n";
+							writeSymbolTable("_"+ yytext() + ",Const_String,,"+ yytext()+ ","+ yytext().length());
 							return new Symbol(sym.Const_String,yytext());
             }
             // fall through
