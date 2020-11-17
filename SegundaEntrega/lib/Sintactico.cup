@@ -6,6 +6,7 @@ import java_cup.runtime.*;
 
 parser code
 {:
+	String s = "";
     public void syntax_error(Symbol s){
         System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
             + s + " no reconocido. valor " + s.value );
@@ -23,79 +24,133 @@ non terminal pgm, listadesentencias, lineadesentencia, tipo, cond, while, if, as
 
 start with pgm;
 
-pgm ::= declaracion programa {: System.out.println("pgm Regla 0 Compila correctamente llegando al simbolo start");:};
+pgm ::= declaracion programa {: System.out.println("pgm Regla 0 Compila correctamente llegando al simbolo start");
+							s = s + "pgm Regla 0 Compila correctamente llegando al simbolo start\n";:};
 
-listadesentencias ::= listadesentencias lineadesentencia {:System.out.println("[Regla 1] Sentencias"); :}
-			| lineadesentencia {:System.out.println("[Regla 2] Sentencia"); :};
+listadesentencias ::= listadesentencias lineadesentencia {:System.out.println("[Regla 1] Sentencias"); 
+							s = s + "[Regla 1] Sentencias\n";:}
+			| lineadesentencia {:System.out.println("[Regla 2] Sentencia"); 
+							s = s + "[Regla 2] Sentencia\n";:};
 
-lineadesentencia ::= asignacion {:System.out.println("[Regla 3] Linea de sentencia - Asignación"); :}
-			| salida {:System.out.println("[Regla 4] Linea de sentencia - Salida"); :}
-			| while {:System.out.println("[Regla 5] Linea de sentencia - While"); :}
-			| if {:System.out.println("[Regla 6] Linea de sentencia - If"); :};
+lineadesentencia ::= asignacion {:System.out.println("[Regla 3] Linea de sentencia - Asignación"); 
+							s = s + "[Regla 3] Linea de sentencia - Asignación\n";:}
+			| salida {:System.out.println("[Regla 4] Linea de sentencia - Salida"); 
+							s = s + "[Regla 4] Linea de sentencia - Salida\n";:}
+			| while {:System.out.println("[Regla 5] Linea de sentencia - While"); 
+							s = s + "[Regla 5] Linea de sentencia - While\n";:}
+			| if {:System.out.println("[Regla 6] Linea de sentencia - If"); 
+							s = s + "[Regla 6] Linea de sentencia - If\n";:};
 
-tipo ::= PInt {:System.out.println("[Regla 7] Tipo - INT"); :}
-			| PFloat {:System.out.println("[Regla 8] Tipo - FLOAT"); :}
-			| PString {:System.out.println("[Regla 9] Tipo - STRING"); :};
+tipo ::= PInt {:System.out.println("[Regla 7] Tipo - INT"); 
+							s = s + "[Regla 7] Tipo - INT\n";:}
+			| PFloat {:System.out.println("[Regla 8] Tipo - FLOAT"); 
+							s = s + "[Regla 8] Tipo - FLOAT\n";:}
+			| PString {:System.out.println("[Regla 9] Tipo - STRING"); 
+							s = s + "[Regla 9] Tipo - STRING\n";:};
 
-cond ::= condicion {:System.out.println("[Regla 10] Cond - Condición"); :}
-			| condicionlogica {:System.out.println("[Regla 11] Cond - Condicion Lógica"); :}
-			| inlist {:System.out.println("[Regla 12] Cond - InList"); :};
+cond ::= condicion {:System.out.println("[Regla 10] Cond - Condición"); 
+							s = s + "[Regla 10] Cond - Condición\n";:}
+			| condicionlogica {:System.out.println("[Regla 11] Cond - Condicion Lógica"); 
+							s = s + "[Regla 11] Cond - Condicion Lógica\n";:}
+			| inlist {:System.out.println("[Regla 12] Cond - InList"); 
+							s = s + "[Regla 12] Cond - InList\n";:};
 
-while ::= While ParA cond ParC LlaveA listadesentencias LlaveC {:System.out.println("[Regla 13] While"); :};
+while ::= While ParA cond ParC LlaveA listadesentencias LlaveC {:System.out.println("[Regla 13] While"); 
+							s = s + "[Regla 13] While\n";:};
 
-if ::= If ParA cond ParC LlaveA listadesentencias LlaveC {:System.out.println("[Regla 14] If"); :}
-			| If ParA cond ParC LlaveA listadesentencias LlaveC Else LlaveA listadesentencias LlaveC {:System.out.println("[Regla 15] If Else"); :};
+if ::= If ParA cond ParC LlaveA listadesentencias LlaveC {:System.out.println("[Regla 14] If"); 
+							s = s + "[Regla 14] If\n";:}
+			| If ParA cond ParC LlaveA listadesentencias LlaveC Else LlaveA listadesentencias LlaveC {:System.out.println("[Regla 15] If Else"); 
+							s = s + "[Regla 15] If Else\n";:};
 
-asignacion ::= VarId Asignacion expresion {:System.out.println("[Regla 16] Asignacion Expresion"); :}
-			| VarId Asignacion Const_String {:System.out.println("[Regla 17] Asignacion String"); :};
+asignacion ::= VarId Asignacion expresion {:System.out.println("[Regla 16] Asignacion Expresion"); 
+							s = s + "[Regla 16] Asignacion Expresion\n";:}
+			| VarId Asignacion Const_String {:System.out.println("[Regla 17] Asignacion String"); 
+							s = s + "[Regla 17] Asignacion String\n";:};
 
-expresion ::= expresion Suma termino {:System.out.println("[Regla 18] Expresion + Termino"); :}
-			| expresion Resta termino {:System.out.println("[Regla 19] Expresion - Termino"); :}
-			| termino {:System.out.println("[Regla 20] Expresion Termino"); :};
+expresion ::= expresion Suma termino {:System.out.println("[Regla 18] Expresion + Termino"); 
+							s = s + "[Regla 18] Expresion + Termino\n";:}
+			| expresion Resta termino {:System.out.println("[Regla 19] Expresion - Termino"); 
+							s = s + "[Regla 19] Expresion - Termino\n";:}
+			| termino {:System.out.println("[Regla 20] Expresion Termino"); 
+							s = s + "[Regla 20] Expresion Termino\n";:};
 
-termino ::= termino Multiplicacion factor {:System.out.println("[Regla 21] Termino * Factor"); :}
-			| termino Division factor {:System.out.println("[Regla 22] Termino / Factor"); :}
-			| factor {:System.out.println("[Regla 23] Termino Factor"); :};
+termino ::= termino Multiplicacion factor {:System.out.println("[Regla 21] Termino * Factor"); 
+							s = s + "[Regla 21] Termino * Factor\n";:}
+			| termino Division factor {:System.out.println("[Regla 22] Termino / Factor"); 
+							s = s + "[Regla 22] Termino / Factor\n";:}
+			| factor {:System.out.println("[Regla 23] Termino Factor"); 
+							s = s + "[Regla 23] Termino Factor\n";:};
 
-factor ::= VarId {:System.out.println("[Regla 24] Factor VarId"); :}
-			| Numero {:System.out.println("[Regla 25] Factor Numero"); :}
-			| Real {:System.out.println("[Regla 26] Factor Real"); :}
-			| ParA expresion ParC {:System.out.println("[Regla 27] Factor Expresion"); :};
+factor ::= VarId {:System.out.println("[Regla 24] Factor VarId"); 
+							s = s + "[Regla 24] Factor VarId\n";:}
+			| Numero {:System.out.println("[Regla 25] Factor Numero"); 
+							s = s + "[Regla 25] Factor Numero\n";:}
+			| Real {:System.out.println("[Regla 26] Factor Real"); 
+							s = s + "[Regla 26] Factor Real\n";:}
+			| ParA expresion ParC {:System.out.println("[Regla 27] Factor Expresion"); 
+							s = s + "[Regla 27] Factor Expresion\n";:};
 
-salida ::= Print Const_String {:System.out.println("[Regla 28] Factor Expresion"); :};
+salida ::= Print Const_String {:System.out.println("[Regla 28] Factor Expresion"); 
+							s = s + "[Regla 28] Factor Expresion\n";:};
 
-condicionlogica ::= ParA condicion ParC {:System.out.println("[Regla 29] (Condicion)"); :}
-			| condicion And condicion {:System.out.println("[Regla 30] Condicion And Condicion"); :}
-			| condicion Or condicion {:System.out.println("[Regla 31] Condicion Or Condicion"); :}
-			| ParA condicion ParC And ParA condicion ParC {:System.out.println("[Regla 32] (Condicion) And (Condicion)"); :}
-			| ParA condicion ParC  Or ParA condicion ParC {:System.out.println("[Regla 33] (Condicion) Or (Condicion)"); :};
+condicionlogica ::= ParA condicion ParC {:System.out.println("[Regla 29] (Condicion)"); 
+							s = s + "[Regla 29] Condicion\n";:}
+			| condicion And condicion {:System.out.println("[Regla 30] Condicion And Condicion"); 
+							s = s + "[Regla 30] Condicion And Condicion\n";:}
+			| condicion Or condicion {:System.out.println("[Regla 31] Condicion Or Condicion"); 
+							s = s + "[Regla 31] Condicion Or Condicion\n";:}
+			| ParA condicion ParC And ParA condicion ParC {:System.out.println("[Regla 32] (Condicion) And (Condicion)"); 
+							s = s + "[Regla 32] (Condicion) And (Condicion)\n";:}
+			| ParA condicion ParC  Or ParA condicion ParC {:System.out.println("[Regla 33] (Condicion) Or (Condicion)"); 
+							s = s + "[Regla 33] (Condicion) Or (Condicion)\n";:};
 
-condicion ::= expresion op_comp expresion {:System.out.println("[Regla 34] Expresion Operacion Logica Expresion"); :};
+condicion ::= expresion op_comp expresion {:System.out.println("[Regla 34] Expresion Operacion Logica Expresion"); 
+							s = s + "[Regla 34] Expresion Operacion Logica Expresion\n";:};
 
-op_comp ::= Mayor {:System.out.println("[Regla 35] Operacion Mayor"); :}
-			| MayorI {:System.out.println("[Regla 36] Operacion MayorI"); :}
-			| Menor {:System.out.println("[Regla 37] Operacion Menor"); :}
-			| MenorI {:System.out.println("[Regla 38] Operacion MenorI"); :}
-			| Distinto {:System.out.println("[Regla 39] Operacion Distinto"); :}
-			| Igual {:System.out.println("[Regla 40] Operacion Igual"); :};
+op_comp ::= Mayor {:System.out.println("[Regla 35] Operacion Mayor"); 
+							s = s + "[Regla 35] Operacion Mayor\n";:}
+			| MayorI {:System.out.println("[Regla 36] Operacion MayorI"); 
+							s = s + "[Regla 36] Operacion MayorI\n";:}
+			| Menor {:System.out.println("[Regla 37] Operacion Menor"); 
+							s = s + "[Regla 37] Operacion Menor\n";:}
+			| MenorI {:System.out.println("[Regla 38] Operacion MenorI"); 
+							s = s + "[Regla 38] Operacion MenorI\n";:}
+			| Distinto {:System.out.println("[Regla 39] Operacion Distinto"); 
+							s = s + "[Regla 39] Operacion Distinto\n";:}
+			| Igual {:System.out.println("[Regla 40] Operacion Igual"); 
+							s = s + "[Regla 40] Operacion Igual\n";:};
 
-declaracion ::= DeclareB listadedeclaraciones DeclareE {:System.out.println("[Regla 41] Declaracion"); :};
+declaracion ::= DeclareB listadedeclaraciones DeclareE {:System.out.println("[Regla 41] Declaracion"); 
+							s = s + "[Regla 41] Declaracion\n";:};
 
-listadedeclaraciones ::= CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 42] Lista de Declaraciones"); :}
-			| listadedeclaraciones CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 43] Lista de Declaraciones multiples"); :};
+listadedeclaraciones ::= CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 42] Lista de Declaraciones"); 
+							s = s + "[Regla 42] Lista de Declaraciones\n";:}
+			| listadedeclaraciones CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 43] Lista de Declaraciones multiples"); 
+							s = s + "[Regla 43] Lista de Declaraciones multiples\n";:};
 
-lineadedeclaracion ::= VarId CorcheteC Asignacion CorcheteA tipo {:System.out.println("[Regla 44] Linea de declaracion"); :}
-			| VarId Coma lineadedeclaracion Coma tipo {:System.out.println("[Regla 45] Linea de declaracion multiple"); :};
+lineadedeclaracion ::= VarId CorcheteC Asignacion CorcheteA tipo {:System.out.println("[Regla 44] Linea de declaracion"); 
+							s = s + "[Regla 44] Linea de declaracion\n";:}
+			| VarId Coma lineadedeclaracion Coma tipo {:System.out.println("[Regla 45] Linea de declaracion multiple"); 
+							s = s + "[Regla 45] Linea de declaracion multiple\n";:};
 
-programa ::= ProgramB listadesentencias ProgramE {:System.out.println("[Regla 46] Programa"); :};
+programa ::= ProgramB listadesentencias ProgramE {:System.out.println("[Regla 46] Programa"); 
+							s = s + "[Regla 46] Programa\n";:};
 
-inlist ::= InList ParA VarId Coma CorcheteA listadecte CorcheteC ParC {:System.out.println("[Regla 47] InList"); :};
+inlist ::= InList ParA VarId Coma CorcheteA listadecte CorcheteC ParC {:System.out.println("[Regla 47] InList"); 
+							s = s + "[Regla 47] InList\n";:};
 
-listadecte ::= listareal {:System.out.println("[Regla 48] Lista de Cte - Real"); :}
-			| listanumero {:System.out.println("[Regla 49] Lista de Cte - Numero"); :};
+listadecte ::= listareal {:System.out.println("[Regla 48] Lista de Cte - Real"); 
+							s = s + "[Regla 48] Lista de Cte - Real\n";:}
+			| listanumero {:System.out.println("[Regla 49] Lista de Cte - Numero"); 
+							s = s + "[Regla 49] Lista de Cte - Numero\n";:};
 
-listareal ::= Real {:System.out.println("[Regla 50] Lista de Real"); :}
-			| listareal PuntoC Real {:System.out.println("[Regla 51] Lista de Real Multiple"); :};
+listareal ::= Real {:System.out.println("[Regla 50] Lista de Real"); 
+							s = s + "[Regla 50] Lista de Real\n";:}
+			| listareal PuntoC Real {:System.out.println("[Regla 51] Lista de Real Multiple"); 
+							s = s + "[Regla 51] Lista de Real Multiple\n";:};
 
-listanumero ::= Numero {:System.out.println("[Regla 52] Lista de Numero"); :}
-			| listanumero PuntoC Numero {:System.out.println("[Regla 53] Lista de Numero Multiple"); :};
+listanumero ::= Numero {:System.out.println("[Regla 52] Lista de Numero"); 
+							s = s + "[Regla 52] Lista de Numero\n";:}
+			| listanumero PuntoC Numero {:System.out.println("[Regla 53] Lista de Numero Multiple"); 
+							s = s + "[Regla 53] Lista de Numero Multiple\n";:};

@@ -271,6 +271,7 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 
+	String s = "";
     public void syntax_error(Symbol s){
         System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
             + s + " no reconocido. valor " + s.value );
@@ -324,6 +325,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		 System.out.println("pgm Regla 0 Compila correctamente llegando al simbolo start");
+							s = s + "pgm Regla 0 Compila correctamente llegando al simbolo start\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("pgm",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -333,6 +335,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 1] Sentencias"); 
+							s = s + "[Regla 1] Sentencias\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listadesentencias",1, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -342,6 +345,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 2] Sentencia"); 
+							s = s + "[Regla 2] Sentencia\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listadesentencias",1, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -351,6 +355,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 3] Linea de sentencia - Asignación"); 
+							s = s + "[Regla 3] Linea de sentencia - Asignación\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lineadesentencia",2, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -360,6 +365,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 4] Linea de sentencia - Salida"); 
+							s = s + "[Regla 4] Linea de sentencia - Salida\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lineadesentencia",2, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -369,6 +375,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 5] Linea de sentencia - While"); 
+							s = s + "[Regla 5] Linea de sentencia - While\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lineadesentencia",2, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -378,6 +385,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 6] Linea de sentencia - If"); 
+							s = s + "[Regla 6] Linea de sentencia - If\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lineadesentencia",2, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -387,6 +395,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 7] Tipo - INT"); 
+							s = s + "[Regla 7] Tipo - INT\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -396,6 +405,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 8] Tipo - FLOAT"); 
+							s = s + "[Regla 8] Tipo - FLOAT\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -405,6 +415,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 9] Tipo - STRING"); 
+							s = s + "[Regla 9] Tipo - STRING\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -414,6 +425,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 10] Cond - Condición"); 
+							s = s + "[Regla 10] Cond - Condición\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("cond",4, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -423,6 +435,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 11] Cond - Condicion Lógica"); 
+							s = s + "[Regla 11] Cond - Condicion Lógica\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("cond",4, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -432,6 +445,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 12] Cond - InList"); 
+							s = s + "[Regla 12] Cond - InList\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("cond",4, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -441,6 +455,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 13] While"); 
+							s = s + "[Regla 13] While\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("while",5, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -450,6 +465,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 14] If"); 
+							s = s + "[Regla 14] If\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("if",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -459,6 +475,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 15] If Else"); 
+							s = s + "[Regla 15] If Else\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("if",6, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-10)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -468,6 +485,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 16] Asignacion Expresion"); 
+							s = s + "[Regla 16] Asignacion Expresion\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -477,6 +495,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 17] Asignacion String"); 
+							s = s + "[Regla 17] Asignacion String\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -486,6 +505,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 18] Expresion + Termino"); 
+							s = s + "[Regla 18] Expresion + Termino\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -495,6 +515,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 19] Expresion - Termino"); 
+							s = s + "[Regla 19] Expresion - Termino\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",8, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -504,6 +525,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 20] Expresion Termino"); 
+							s = s + "[Regla 20] Expresion Termino\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("expresion",8, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -513,6 +535,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 21] Termino * Factor"); 
+							s = s + "[Regla 21] Termino * Factor\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("termino",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -522,6 +545,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 22] Termino / Factor"); 
+							s = s + "[Regla 22] Termino / Factor\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("termino",9, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -531,6 +555,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 23] Termino Factor"); 
+							s = s + "[Regla 23] Termino Factor\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("termino",9, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -540,6 +565,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 24] Factor VarId"); 
+							s = s + "[Regla 24] Factor VarId\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",10, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -549,6 +575,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 25] Factor Numero"); 
+							s = s + "[Regla 25] Factor Numero\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",10, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -558,6 +585,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 26] Factor Real"); 
+							s = s + "[Regla 26] Factor Real\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",10, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -567,6 +595,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 27] Factor Expresion"); 
+							s = s + "[Regla 27] Factor Expresion\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",10, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -576,6 +605,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 28] Factor Expresion"); 
+							s = s + "[Regla 28] Factor Expresion\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("salida",11, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -585,6 +615,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 29] (Condicion)"); 
+							s = s + "[Regla 29] Condicion\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicionlogica",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -594,6 +625,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 30] Condicion And Condicion"); 
+							s = s + "[Regla 30] Condicion And Condicion\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicionlogica",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -603,6 +635,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 31] Condicion Or Condicion"); 
+							s = s + "[Regla 31] Condicion Or Condicion\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicionlogica",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -612,6 +645,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 32] (Condicion) And (Condicion)"); 
+							s = s + "[Regla 32] (Condicion) And (Condicion)\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicionlogica",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -621,6 +655,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 33] (Condicion) Or (Condicion)"); 
+							s = s + "[Regla 33] (Condicion) Or (Condicion)\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicionlogica",12, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-6)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -630,6 +665,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 34] Expresion Operacion Logica Expresion"); 
+							s = s + "[Regla 34] Expresion Operacion Logica Expresion\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("condicion",13, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -639,6 +675,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 35] Operacion Mayor"); 
+							s = s + "[Regla 35] Operacion Mayor\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("op_comp",14, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -648,6 +685,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 36] Operacion MayorI"); 
+							s = s + "[Regla 36] Operacion MayorI\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("op_comp",14, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -657,6 +695,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 37] Operacion Menor"); 
+							s = s + "[Regla 37] Operacion Menor\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("op_comp",14, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -666,6 +705,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 38] Operacion MenorI"); 
+							s = s + "[Regla 38] Operacion MenorI\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("op_comp",14, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -675,6 +715,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 39] Operacion Distinto"); 
+							s = s + "[Regla 39] Operacion Distinto\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("op_comp",14, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -684,6 +725,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 40] Operacion Igual"); 
+							s = s + "[Regla 40] Operacion Igual\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("op_comp",14, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -693,6 +735,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 41] Declaracion"); 
+							s = s + "[Regla 41] Declaracion\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("declaracion",15, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -702,6 +745,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 42] Lista de Declaraciones"); 
+							s = s + "[Regla 42] Lista de Declaraciones\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listadedeclaraciones",16, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -711,6 +755,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 43] Lista de Declaraciones multiples"); 
+							s = s + "[Regla 43] Lista de Declaraciones multiples\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listadedeclaraciones",16, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -720,6 +765,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 44] Linea de declaracion"); 
+							s = s + "[Regla 44] Linea de declaracion\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lineadedeclaracion",17, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -729,6 +775,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 45] Linea de declaracion multiple"); 
+							s = s + "[Regla 45] Linea de declaracion multiple\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lineadedeclaracion",17, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -738,6 +785,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 46] Programa"); 
+							s = s + "[Regla 46] Programa\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("programa",18, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -747,6 +795,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 47] InList"); 
+							s = s + "[Regla 47] InList\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("inlist",19, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-7)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -756,6 +805,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 48] Lista de Cte - Real"); 
+							s = s + "[Regla 48] Lista de Cte - Real\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listadecte",20, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -765,6 +815,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 49] Lista de Cte - Numero"); 
+							s = s + "[Regla 49] Lista de Cte - Numero\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listadecte",20, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -774,6 +825,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 50] Lista de Real"); 
+							s = s + "[Regla 50] Lista de Real\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listareal",21, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -783,6 +835,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 51] Lista de Real Multiple"); 
+							s = s + "[Regla 51] Lista de Real Multiple\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listareal",21, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -792,6 +845,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 52] Lista de Numero"); 
+							s = s + "[Regla 52] Lista de Numero\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listanumero",22, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -801,6 +855,7 @@ class CUP$parser$actions {
             {
               Object RESULT =null;
 		System.out.println("[Regla 53] Lista de Numero Multiple"); 
+							s = s + "[Regla 53] Lista de Numero Multiple\n";
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listanumero",22, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;

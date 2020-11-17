@@ -11,8 +11,8 @@ public class Main {
 		try {
 			f = new FileReader("prueba.txt");
 			Lexico Lexer = new Lexico(f);
-//			parser sintactico = new parser(Lexer);
-//			sintactico.parse();
+			parser sintactico = new parser(Lexer);
+			sintactico.parse();
 			Lexer.next_token();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

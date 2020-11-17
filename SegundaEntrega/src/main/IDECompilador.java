@@ -164,14 +164,6 @@ public class IDECompilador extends JFrame {
 		gbc_lblCodigoDePrueba.gridy = 4;
 		contentPane.add(lblCodigoDePrueba, gbc_lblCodigoDePrueba);
 		
-		JButton btnNewButton = new JButton("Analisis Sint\u00E1ctico");
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.gridwidth = 5;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton.gridx = 3;
-		gbc_btnNewButton.gridy = 7;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
-		
 		TextArea resultadoAnalisis = new TextArea();
 		resultadoAnalisis.setEditable(false);
 		GridBagConstraints gbc_resultadoAnalisis = new GridBagConstraints();
@@ -182,6 +174,35 @@ public class IDECompilador extends JFrame {
 		gbc_resultadoAnalisis.gridy = 9;
 		contentPane.add(resultadoAnalisis, gbc_resultadoAnalisis);
 		
+		JButton btnNewButton = new JButton("Analisis Sint\u00E1ctico");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (fr == null) {
+					JOptionPane.showMessageDialog(null,"No hay archivo cargado");
+				}else {
+					try {
+						saveFile(txaArchivo,false);
+						Lexico Lexer = new Lexico(fr);
+						parser sintactico = new parser(Lexer);
+						sintactico.parse();
+						resultadoAnalisis.setText(sintactico.s);
+						fr = new FileReader(archivo);
+					} catch (IOException e1) {
+						JOptionPane.showMessageDialog(null,"Error");
+					} catch (Exception e2) {
+						// TODO Auto-generated catch block
+						JOptionPane.showMessageDialog(null,e2.toString().substring(21));
+					}
+				}	
+			}
+		});
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.gridwidth = 5;
+		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
+		gbc_btnNewButton.gridx = 3;
+		gbc_btnNewButton.gridy = 7;
+		contentPane.add(btnNewButton, gbc_btnNewButton);
+		
 		JButton btnRealizarAnalisis = new JButton("Analisis Lexicogr\u00E1fico");
 		btnRealizarAnalisis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -191,7 +212,8 @@ public class IDECompilador extends JFrame {
 					try {
 						saveFile(txaArchivo,false);
 						Lexico Lexer = new Lexico(fr);
-						Lexer.next_token();
+						parser sintactico = new parser(Lexer);
+						sintactico.parse();
 						resultadoAnalisis.setText(Lexer.s);
 						fr = new FileReader(archivo);
 					} catch (IOException e1) {
