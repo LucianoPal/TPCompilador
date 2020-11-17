@@ -27,6 +27,7 @@ public class sym {
   public static final int While = 2;
   public static final int Division = 26;
   public static final int MenorI = 20;
+  public static final int Const_String = 39;
   public static final int EOF = 0;
   public static final int And = 15;
   public static final int CorcheteC = 32;
@@ -37,7 +38,6 @@ public class sym {
   public static final int ParC = 28;
   public static final int ParA = 27;
   public static final int PFloat = 12;
-  public static final int String = 39;
   public static final int Resta = 24;
   public static final int InList = 10;
   public static final int Multiplicacion = 25;
@@ -88,7 +88,7 @@ public class sym {
   "Asignacion",
   "Numero",
   "Real",
-  "String"
+  "Const_String"
   };
 }
 

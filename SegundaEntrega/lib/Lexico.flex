@@ -91,8 +91,8 @@ PString = STRING
 VarId = {Nombre}
 Comentario = "</" ~"/>"
 
-And = "&&"
-Or = "||"
+And = "&&" | and | AND
+Or = "||" | or | OR
 Mayor = ">"
 MayorI = ">="
 Menor = "<"
@@ -114,15 +114,16 @@ PuntoC = ";"
 Comilla = "\""
 
 Asignacion = ":="
-Letra = [a-zA-Z]
+Letra = [a-zA-ZñÑ]
 Digito = [0-9]
 Numero = {Digito}+ | (- {Digito}+)
 Real = ({Numero}+ "." {Digito}*) | ({Numero}* "." {Digito}+)
 Blanco = [ \r\n]
 EspacioBlanco = [ \t\f\r\n]
+EspaciosBlanco = {EspacioBlanco}+
 CaracterEspecial = {Letra}|{Digito}|"!"|"#"|"$"|"%"|"&"|"'"|"("|")"|"*"|"+"|","|"-"|"."|"/"|":"|";"|"{"|"="|"}"|"?"|"@"|"["|"]"|"^"|"_"|"`"|"{"|"|"|"}"|"~"|"\""
-String = {Blanco} | {CaracterEspecial}*
 Nombre = ({Letra})+ ({Digito} | {Letra} | "_")*
+Const_String = {Comilla} ({Letra}|{Digito}|{CaracterEspecial}|{EspacioBlanco})* {Comilla}
 
 
 %%
@@ -316,12 +317,12 @@ Nombre = ({Letra})+ ({Digito} | {Letra} | "_")*
 						}
 "\"" [^\"\n\r]* "\""				{
 							verify_string(yytext());						
-							s=s+"Token String encontrado, Lexema "+ yytext()+"\n";
-							writeSymbolTable("_"+ yytext() + ",String,,"+ yytext()+ ","+ yytext().length());
-							return new Symbol(sym.String,yytext());
+							s=s+"Token Const_String encontrado, Lexema "+ yytext()+"\n";
+							writeSymbolTable("_"+ yytext() + ",Const_String,,"+ yytext()+ ","+ yytext().length());
+							return new Symbol(sym.Const_String,yytext());
 						}
 
-{EspacioBlanco}			{ /* ignore */ }
+{EspaciosBlanco}			{ /* ignore */ }
 
 {VarId}					{
 						
