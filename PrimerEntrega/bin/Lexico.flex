@@ -1,11 +1,5 @@
-package main;
-
-import java_cup.runtime.*;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java_cup.runtime.Symbol;
+import jflex.core.sym;
 
 %%
 
@@ -78,16 +72,12 @@ import java.util.ArrayList;
 
 While = while | WHILE
 If = if | IF | If
-Else = else | ELSE | Else
 Print = print | PRINT
 DeclareB = declare | DECLARE
 DeclareE = enddeclare | ENDDECLARE
 ProgramB = BEGIN.PROGRAM | begin.program
 ProgramE = END.PROGRAM | end.program
 InList = inlist | INLIST
-PInt = INT
-PFloat = FLOAT
-PString = STRING
 VarId = {Nombre}
 Comentario = "</" ~"/>"
 
@@ -111,7 +101,6 @@ CorcheteA = "["
 CorcheteC = "]"
 Coma = ","
 PuntoC = ";"
-Comilla = "\""
 
 Asignacion = ":="
 Letra = [a-zA-Z]
@@ -132,205 +121,151 @@ Nombre = ({Letra})+ ({Digito} | {Letra} | "_")*
 {Comentario}			{/**/}
 
 {While} 				{
+						System.out.println("Token While encontrado, Lexema "+ yytext());
 						s=s+"Token While encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.While,yytext());
 						}
 {If} 					{
+						System.out.println("Token If encontrado, Lexema "+ yytext());
 						s=s+"Token If encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.If,yytext());
-						}
-{Else} 					{
-						
-						s=s+"Token Else encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Else,yytext());
 						}
 {Print}					{
-						
+						System.out.println("Token Print encontrado, Lexema "+ yytext());
 						s=s+"Token Print encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Print,yytext());
 						}
 {DeclareB}				{
-						
+						System.out.println("Token DeclareB encontrado, Lexema "+ yytext());
 						s=s+"Token DeclareB encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.DeclareB,yytext());
 						}
 {DeclareE}				{
-						
+						System.out.println("Token DeclareE encontrado, Lexema "+ yytext());
 						s=s+"Token DeclareE encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.DeclareE,yytext());
 						}
 {ProgramB}				{
-						
+						System.out.println("Token ProgramB encontrado, Lexema "+ yytext());
 						s=s+"Token ProgramB encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.ProgramB,yytext());
 						}
 {ProgramE}				{
-						
+						System.out.println("Token ProgramE encontrado, Lexema "+ yytext());
 						s=s+"Token ProgramE encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.ProgramE,yytext());
 						}
 {InList}				{
-						
+						System.out.println("Token InList encontrado, Lexema "+ yytext());
 						s=s+"Token InList encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.InList,yytext());
-						}
-{PInt}					{
-						
-						s=s+"Token PInt encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.PInt,yytext());
-						}
-{PFloat}				{
-						
-						s=s+"Token PFloat encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.PFloat,yytext());
-						}
-{PString}				{
-						
-						s=s+"Token PString encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.PString,yytext());
 						}
 
 {ParA}					{
-						
+						System.out.println("Token ParA encontrado, Lexema "+ yytext());
 						s=s+"Token ParA encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.ParA,yytext());
 						}
 {ParC}					{
-						
+						System.out.println("Token ParC encontrado, Lexema "+ yytext());
 						s=s+"Token ParC encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.ParC,yytext());
 						}
 {LlaveA}				{
-						
+						System.out.println("Token LlaveA encontrado, Lexema "+ yytext());
 						s=s+"Token LlaveA encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.LlaveA,yytext());
 						}
 {LlaveC}				{
-						
+						System.out.println("Token LlaveC encontrado, Lexema "+ yytext());
 						s=s+"Token LlaveC encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.LlaveC,yytext());
 						}
 {CorcheteA}				{
-						
+						System.out.println("Token CorcheteA encontrado, Lexema "+ yytext());
 						s=s+"Token CorcheteA encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.CorcheteA,yytext());
 						}
 {CorcheteC}				{
-						
+						System.out.println("Token CorcheteC encontrado, Lexema "+ yytext());
 						s=s+"Token CorcheteC encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.CorcheteC,yytext());
 						}
 
 {And}					{
-						
+						System.out.println("Token And encontrado, Lexema "+ yytext());
 						s=s+"Token And encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.And,yytext());
 						}
 {Or}					{
-						
+						System.out.println("Token Or encontrado, Lexema "+ yytext());
 						s=s+"Token Or encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Or,yytext());
 						}
 {Mayor}					{
-						
+						System.out.println("Token Mayor encontrado, Lexema "+ yytext());
 						s=s+"Token Mayor encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Mayor,yytext());
 						}
 {MayorI}				{
-						
+						System.out.println("Token MayorI encontrado, Lexema "+ yytext());
 						s=s+"Token MayorI encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.MayorI,yytext());
 						}
 {Menor}					{
-						
+						System.out.println("Token Menor encontrado, Lexema "+ yytext());
 						s=s+"Token Menor encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Menor,yytext());
 						}
 {MenorI}				{
-						
+						System.out.println("Token MenorI encontrado, Lexema "+ yytext());
 						s=s+"Token MenorI encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.MenorI,yytext());
 						}
 {Distinto}				{
-						
+						System.out.println("Token Distinto encontrado, Lexema "+ yytext());
 						s=s+"Token Distinto encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Distinto,yytext());
 						}
 {Igual}					{
-						
+						System.out.println("Token Igual encontrado, Lexema "+ yytext());
 						s=s+"Token Igual encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Igual,yytext());
 						}
 {Suma}					{
-						
+						System.out.println("Token Suma encontrado, Lexema "+ yytext());
 						s=s+"Token Suma encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Suma,yytext());
 						}
 {Resta}					{
-						
+						System.out.println("Token Resta encontrado, Lexema "+ yytext());
 						s=s+"Token Resta encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Resta,yytext());
 						}
 {Multiplicacion}		{
-						
+						System.out.println("Token Multiplicacion encontrado, Lexema "+ yytext());
 						s=s+"Token Multiplicacion encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Multiplicacion,yytext());
 						}
 {Division}				{
-						
+						System.out.println("Token Division encontrado, Lexema "+ yytext());
 						s=s+"Token Division encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Division,yytext());
 						}
 {Coma}					{
-						
+						System.out.println("Token Coma encontrado, Lexema "+ yytext());
 						s=s+"Token Coma encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Coma,yytext());
 						}
 {PuntoC}				{
-						
+						System.out.println("Token PuntoC encontrado, Lexema "+ yytext());
 						s=s+"Token PuntoC encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.PuntoC,yytext());
-						}
-{Comilla}				{
-						
-						s=s+"Token Comilla encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Comilla,yytext());
 						}
 {Asignacion}			{
-						
+						System.out.println("Token Asignacion encontrado, Lexema "+ yytext());
 						s=s+"Token Asignacion encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Asignacion,yytext());
 						}
 
 {Numero}				{
 							verify_int(yytext());
+							System.out.println("Token Numero encontrado, Lexema "+ yytext());
 							s=s+"Token Numero encontrado, Lexema "+ yytext()+"\n";
 							writeSymbolTable("_"+ yytext() + ",Numero,,"+ yytext()+ ",");
-							return new Symbol(sym.Numero,yytext());
 						}
 {Real}					{
 							verify_real(yytext());
+							System.out.println("Token Real encontrado, Lexema "+ yytext());
 							s=s+"Token Real encontrado, Lexema "+ yytext()+"\n";
 							writeSymbolTable("_"+ yytext() + ",Real,,"+ yytext()+ ",");
-							return new Symbol(sym.Real,yytext());
 						}
 "\"" [^\"\n\r]* "\""				{
-							verify_string(yytext());						
+							verify_string(yytext());
+							System.out.println("Token String encontrado, Lexema "+ yytext());
 							s=s+"Token String encontrado, Lexema "+ yytext()+"\n";
 							writeSymbolTable("_"+ yytext() + ",String,,"+ yytext()+ ","+ yytext().length());
-							return new Symbol(sym.String,yytext());
 						}
 
 {EspacioBlanco}			{ /* ignore */ }
 
 {VarId}					{
-						
+						System.out.println("Token VarId encontrado, Lexema "+ yytext());
 						s=s+"Token VarId encontrado, Lexema "+ yytext()+"\n";
 						writeSymbolTable(yytext() + ",VarId,,"+",");
-						return new Symbol(sym.VarId,yytext());
 						}
 
 }
 
 [^]		{ throw new Error("Caracter no permitido: <" + yytext() + "> en la linea " + yyline); }
-<<EOF>> {return new Symbol(sym.EOF);}
