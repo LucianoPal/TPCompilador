@@ -292,11 +292,6 @@ Const_String = {Comilla} ({Letra}|{Digito}|{CaracterEspecial}|{EspacioBlanco})* 
 						s=s+"Token PuntoC encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.PuntoC,yytext());
 						}
-{Comilla}				{
-						
-						s=s+"Token Comilla encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Comilla,yytext());
-						}
 {Asignacion}			{
 						
 						s=s+"Token Asignacion encontrado, Lexema "+ yytext()+"\n";

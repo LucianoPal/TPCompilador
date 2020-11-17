@@ -107,21 +107,21 @@ public class Lexico implements java_cup.runtime.Scanner {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\1\1\4\1\5\1\6"+
-    "\1\7\1\10\1\11\1\1\1\12\1\13\1\1\1\14"+
-    "\1\15\1\16\1\17\13\20\1\21\1\22\10\20\1\23"+
-    "\1\1\1\24\1\0\1\25\1\26\1\27\1\0\1\30"+
-    "\1\0\1\31\1\32\1\16\1\33\7\20\1\34\1\20"+
-    "\1\35\12\20\1\35\2\0\1\26\7\20\1\36\11\20"+
-    "\1\37\2\20\1\40\1\0\11\20\1\0\7\20\1\0"+
-    "\2\20\1\41\1\20\1\42\1\20\1\43\2\20\1\0"+
-    "\3\20\1\0\2\20\1\0\2\20\1\44\1\45\1\0"+
-    "\2\20\1\0\2\20\1\0\1\20\1\46\1\0\2\20"+
-    "\1\0\1\20\1\0\2\20\1\0\1\20\1\0\2\20"+
-    "\1\0\1\20\1\0\2\20\1\0\1\20\1\0\2\20"+
-    "\1\0\1\20\1\0\2\20\1\0\1\20\1\0\1\20"+
-    "\1\47\1\0\1\20\1\0\1\20\1\0\1\20\2\50"+
-    "\1\0\1\20\1\0\1\20\1\0\1\20\2\51";
+    "\1\0\1\1\1\2\2\1\1\3\1\4\1\5\1\6"+
+    "\1\7\1\10\1\1\1\11\1\12\1\1\1\13\1\14"+
+    "\1\15\1\16\13\17\1\20\1\21\10\17\1\22\1\1"+
+    "\1\23\1\0\1\24\1\25\1\26\1\0\1\27\1\0"+
+    "\1\30\1\31\1\15\1\32\7\17\1\33\1\17\1\34"+
+    "\12\17\1\34\2\0\1\25\7\17\1\35\11\17\1\36"+
+    "\2\17\1\37\1\0\11\17\1\0\7\17\1\0\2\17"+
+    "\1\40\1\17\1\41\1\17\1\42\2\17\1\0\3\17"+
+    "\1\0\2\17\1\0\2\17\1\43\1\44\1\0\2\17"+
+    "\1\0\2\17\1\0\1\17\1\45\1\0\2\17\1\0"+
+    "\1\17\1\0\2\17\1\0\1\17\1\0\2\17\1\0"+
+    "\1\17\1\0\2\17\1\0\1\17\1\0\2\17\1\0"+
+    "\1\17\1\0\2\17\1\0\1\17\1\0\1\17\1\46"+
+    "\1\0\1\17\1\0\1\17\1\0\1\17\2\47\1\0"+
+    "\1\17\1\0\1\17\1\0\1\17\2\50";
 
   private static int [] zzUnpackAction() {
     int [] result = new int[197];
@@ -938,255 +938,248 @@ public class Lexico implements java_cup.runtime.Scanner {
             { throw new Error("Caracter no permitido: <" + yytext() + "> en la linea " + yyline);
             }
             // fall through
-          case 42: break;
+          case 41: break;
           case 2:
             { /* ignore */
             }
             // fall through
-          case 43: break;
+          case 42: break;
           case 3:
-            { s=s+"Token Comilla encontrado, Lexema "+ yytext()+"\n";
-						return new Symbol(sym.Comilla,yytext());
-            }
-            // fall through
-          case 44: break;
-          case 4:
             { s=s+"Token ParA encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.ParA,yytext());
             }
             // fall through
-          case 45: break;
-          case 5:
+          case 43: break;
+          case 4:
             { s=s+"Token ParC encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.ParC,yytext());
             }
             // fall through
-          case 46: break;
-          case 6:
+          case 44: break;
+          case 5:
             { s=s+"Token Multiplicacion encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Multiplicacion,yytext());
             }
             // fall through
-          case 47: break;
-          case 7:
+          case 45: break;
+          case 6:
             { s=s+"Token Suma encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Suma,yytext());
             }
             // fall through
-          case 48: break;
-          case 8:
+          case 46: break;
+          case 7:
             { s=s+"Token Coma encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Coma,yytext());
             }
             // fall through
-          case 49: break;
-          case 9:
+          case 47: break;
+          case 8:
             { s=s+"Token Resta encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Resta,yytext());
             }
             // fall through
-          case 50: break;
-          case 10:
+          case 48: break;
+          case 9:
             { s=s+"Token Division encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Division,yytext());
             }
             // fall through
-          case 51: break;
-          case 11:
+          case 49: break;
+          case 10:
             { verify_int(yytext());
 							s=s+"Token Numero encontrado, Lexema "+ yytext()+"\n";
 							writeSymbolTable("_"+ yytext() + ",Numero,,"+ yytext()+ ",");
 							return new Symbol(sym.Numero,yytext());
             }
             // fall through
-          case 52: break;
-          case 12:
+          case 50: break;
+          case 11:
             { s=s+"Token PuntoC encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.PuntoC,yytext());
             }
             // fall through
-          case 53: break;
-          case 13:
+          case 51: break;
+          case 12:
             { s=s+"Token Menor encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Menor,yytext());
             }
             // fall through
-          case 54: break;
-          case 14:
+          case 52: break;
+          case 13:
             { s=s+"Token Igual encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Igual,yytext());
             }
             // fall through
-          case 55: break;
-          case 15:
+          case 53: break;
+          case 14:
             { s=s+"Token Mayor encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Mayor,yytext());
             }
             // fall through
-          case 56: break;
-          case 16:
+          case 54: break;
+          case 15:
             { s=s+"Token VarId encontrado, Lexema "+ yytext()+"\n";
 						writeSymbolTable(yytext() + ",VarId,,"+",");
 						return new Symbol(sym.VarId,yytext());
             }
             // fall through
-          case 57: break;
-          case 17:
+          case 55: break;
+          case 16:
             { s=s+"Token CorcheteA encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.CorcheteA,yytext());
             }
             // fall through
-          case 58: break;
-          case 18:
+          case 56: break;
+          case 17:
             { s=s+"Token CorcheteC encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.CorcheteC,yytext());
             }
             // fall through
-          case 59: break;
-          case 19:
+          case 57: break;
+          case 18:
             { s=s+"Token LlaveA encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.LlaveA,yytext());
             }
             // fall through
-          case 60: break;
-          case 20:
+          case 58: break;
+          case 19:
             { s=s+"Token LlaveC encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.LlaveC,yytext());
             }
             // fall through
-          case 61: break;
-          case 21:
+          case 59: break;
+          case 20:
             { verify_string(yytext());						
 							s=s+"Token Const_String encontrado, Lexema "+ yytext()+"\n";
 							writeSymbolTable("_"+ yytext() + ",Const_String,,"+ yytext()+ ","+ yytext().length());
 							return new Symbol(sym.Const_String,yytext());
             }
             // fall through
-          case 62: break;
-          case 22:
+          case 60: break;
+          case 21:
             { s=s+"Token And encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.And,yytext());
             }
             // fall through
-          case 63: break;
-          case 23:
+          case 61: break;
+          case 22:
             { verify_real(yytext());
 							s=s+"Token Real encontrado, Lexema "+ yytext()+"\n";
 							writeSymbolTable("_"+ yytext() + ",Real,,"+ yytext()+ ",");
 							return new Symbol(sym.Real,yytext());
             }
             // fall through
-          case 64: break;
-          case 24:
+          case 62: break;
+          case 23:
             { s=s+"Token Asignacion encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Asignacion,yytext());
             }
             // fall through
-          case 65: break;
-          case 25:
+          case 63: break;
+          case 24:
             { s=s+"Token MenorI encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.MenorI,yytext());
             }
             // fall through
-          case 66: break;
-          case 26:
+          case 64: break;
+          case 25:
             { s=s+"Token Distinto encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Distinto,yytext());
             }
             // fall through
-          case 67: break;
-          case 27:
+          case 65: break;
+          case 26:
             { s=s+"Token MayorI encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.MayorI,yytext());
             }
             // fall through
-          case 68: break;
-          case 28:
+          case 66: break;
+          case 27:
             { s=s+"Token If encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.If,yytext());
             }
             // fall through
-          case 69: break;
-          case 29:
+          case 67: break;
+          case 28:
             { s=s+"Token Or encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Or,yytext());
             }
             // fall through
-          case 70: break;
-          case 30:
+          case 68: break;
+          case 29:
             { s=s+"Token PInt encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.PInt,yytext());
             }
             // fall through
-          case 71: break;
-          case 31:
+          case 69: break;
+          case 30:
             { /**/
             }
             // fall through
-          case 72: break;
-          case 32:
+          case 70: break;
+          case 31:
             { s=s+"Token Else encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Else,yytext());
             }
             // fall through
-          case 73: break;
-          case 33:
+          case 71: break;
+          case 32:
             { s=s+"Token PFloat encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.PFloat,yytext());
             }
             // fall through
-          case 74: break;
-          case 34:
+          case 72: break;
+          case 33:
             { s=s+"Token Print encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.Print,yytext());
             }
             // fall through
-          case 75: break;
-          case 35:
+          case 73: break;
+          case 34:
             { s=s+"Token While encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.While,yytext());
             }
             // fall through
-          case 76: break;
-          case 36:
+          case 74: break;
+          case 35:
             { s=s+"Token InList encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.InList,yytext());
             }
             // fall through
-          case 77: break;
-          case 37:
+          case 75: break;
+          case 36:
             { s=s+"Token PString encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.PString,yytext());
             }
             // fall through
-          case 78: break;
-          case 38:
+          case 76: break;
+          case 37:
             { s=s+"Token DeclareB encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.DeclareB,yytext());
             }
             // fall through
-          case 79: break;
-          case 39:
+          case 77: break;
+          case 38:
             { s=s+"Token DeclareE encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.DeclareE,yytext());
             }
             // fall through
-          case 80: break;
-          case 40:
+          case 78: break;
+          case 39:
             { s=s+"Token ProgramE encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.ProgramE,yytext());
             }
             // fall through
-          case 81: break;
-          case 41:
+          case 79: break;
+          case 40:
             { s=s+"Token ProgramB encontrado, Lexema "+ yytext()+"\n";
 						return new Symbol(sym.ProgramB,yytext());
             }
             // fall through
-          case 82: break;
+          case 80: break;
           default:
             zzScanError(ZZ_NO_MATCH);
-          
         }
       }
     }
