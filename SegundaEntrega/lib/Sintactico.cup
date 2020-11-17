@@ -1,3 +1,4 @@
+package main;
 import java.util.ArrayList;
 import java.util.List;
 import java_cup.runtime.*;
@@ -81,7 +82,7 @@ declaracion ::= DeclareB listadedeclaraciones DeclareE {:System.out.println("[Re
 listadedeclaraciones ::= CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 40] Lista de Declaraciones"); :};
 
 lineadedeclaracion ::= VarId CorcheteC Asignacion CorcheteA tipo {:System.out.println("[Regla 41] Linea de declaracion"); :}
-			| VarId Coma lineadedeclaracion Coma {:System.out.println("[Regla 42] Linea de declaracion multiple"); :};
+			| VarId Coma lineadedeclaracion Coma tipo {:System.out.println("[Regla 42] Linea de declaracion multiple"); :};
 
 programa ::= ProgramB listadesentencias ProgramE {:System.out.println("[Regla 43] Programa"); :};
 
