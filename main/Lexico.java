@@ -10,8 +10,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
 import java_cup.runtime.Symbol;
+import jflex.core.sym;
 
 
 

@@ -11,21 +11,20 @@ DECLARE
 [var] := [INT]
 ENDDECLARE
 
-
 BEGIN.PROGRAM
 
-PRINT  "Prueba.txt AnalizadorLexico!"
+PRINT  "Prueba.txt AnalizadorLexico"
 
 contador = 0
-suma = 7.5
+suma = 76.5
 contar = 18.22
 
-while (contador <= 92) {
+while (contador <= 9) {
 	contador = contador + 1
 	actual = (contador / 0.342) + (contador * (contar + 4.67))
 	suma = suma + actual
 	}
-PRINT  "Lavariablesumaesdetipofloat"
+PRINT  "La variable suma"
 
 
 If ((actual > 2) and (actual <> 0)){

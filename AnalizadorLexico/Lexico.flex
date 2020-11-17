@@ -1,5 +1,5 @@
 import java_cup.runtime.Symbol;
-
+import jflex.core.sym;
 
 %%
 
