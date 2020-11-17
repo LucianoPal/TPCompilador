@@ -17,7 +17,7 @@ action code
 {:
 :}
 
-terminal While, If, Else, Print, DeclareB, DeclareE, ProgramB, ProgramE, InList, PInt, PFloat, PString, VarId, And, Or, Mayor, MayorI, Menor, MenorI, Distinto, Igual, Suma, Resta, Multiplicacion, Division, ParA, ParC, LlaveA, LlaveC, CorcheteA, CorcheteC, Coma, PuntoC, Comilla, Asignacion, Numero, Real, Const_String;
+terminal While, If, Else, Print, DeclareB, DeclareE, ProgramB, ProgramE, InList, PInt, PFloat, PString, VarId, And, Or, Mayor, MayorI, Menor, MenorI, Distinto, Igual, Suma, Resta, Multiplicacion, Division, ParA, ParC, LlaveA, LlaveC, CorcheteA, CorcheteC, Coma, PuntoC, Comilla, Asignacion, Numero, Real, String;
 
 non terminal pgm, listadesentencias, lineadesentencia, tipo, cond, while, if, asignacion, expresion, termino, factor, salida, condicionlogica, condicion, op_comp, declaracion, listadedeclaraciones, lineadedeclaracion, programa, inlist, listadecte, listareal, listanumero;
 
@@ -47,7 +47,7 @@ if ::= If ParA cond ParC LlaveA listadesentencias LlaveC {:System.out.println("[
 			| If ParA cond ParC LlaveA listadesentencias LlaveC Else LlaveA listadesentencias LlaveC {:System.out.println("[Regla 15] If Else"); :};
 
 asignacion ::= VarId Asignacion expresion {:System.out.println("[Regla 16] Asignacion Expresion"); :}
-			| VarId Asignacion Const_String {:System.out.println("[Regla 17] Asignacion String"); :};
+			| VarId Asignacion String {:System.out.println("[Regla 17] Asignacion String"); :};
 
 expresion ::= expresion Suma termino {:System.out.println("[Regla 18] Expresion + Termino"); :}
 			| expresion Resta termino {:System.out.println("[Regla 19] Expresion - Termino"); :}
@@ -62,13 +62,11 @@ factor ::= VarId {:System.out.println("[Regla 24] Factor VarId"); :}
 			| Real {:System.out.println("[Regla 26] Factor Real"); :}
 			| ParA expresion ParC {:System.out.println("[Regla 27] Factor Expresion"); :};
 
-salida ::= Print Const_String {:System.out.println("[Regla 28] Factor Expresion"); :};
+salida ::= Print Comilla String Comilla {:System.out.println("[Regla 28] Factor Expresion"); :};
 
 condicionlogica ::= ParA condicion ParC {:System.out.println("[Regla 29] (Condicion)"); :}
 			| condicion And condicion {:System.out.println("[Regla 30] Condicion And Condicion"); :}
-			| condicion Or condicion {:System.out.println("[Regla 31] Condicion Or Condicion"); :}
-			| ParA condicion ParC And ParA condicion ParC {:System.out.println("[Regla 30] (Condicion) And (Condicion)"); :}
-			| ParA condicion ParC  Or ParA condicion ParC {:System.out.println("[Regla 31] (Condicion) Or (Condicion)"); :};
+			| condicion Or condicion {:System.out.println("[Regla 31] Condicion Or Condicion"); :};
 
 condicion ::= expresion op_comp expresion {:System.out.println("[Regla 32] Expresion Operacion Logica Expresion"); :};
 
@@ -81,8 +79,7 @@ op_comp ::= Mayor {:System.out.println("[Regla 33] Operacion Mayor"); :}
 
 declaracion ::= DeclareB listadedeclaraciones DeclareE {:System.out.println("[Regla 39] Declaracion"); :};
 
-listadedeclaraciones ::= CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 40] Lista de Declaraciones"); :}
-			| listadedeclaraciones CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 40] Lista de Declaraciones multiples"); :};
+listadedeclaraciones ::= CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 40] Lista de Declaraciones"); :};
 
 lineadedeclaracion ::= VarId CorcheteC Asignacion CorcheteA tipo {:System.out.println("[Regla 41] Linea de declaracion"); :}
 			| VarId Coma lineadedeclaracion Coma tipo {:System.out.println("[Regla 42] Linea de declaracion multiple"); :};
