@@ -65,33 +65,33 @@ salida ::= Print Comilla String Comilla {:System.out.println("[Regla 28] Factor 
 
 condicionlogica ::= ParA condicion ParC {:System.out.println("[Regla 29] (Condicion)"); :}
 			| condicion And condicion {:System.out.println("[Regla 30] Condicion And Condicion"); :}
-			| condicion Or condicion {:System.out.println("[Regla 30] Condicion Or Condicion"); :}
+			| condicion Or condicion {:System.out.println("[Regla 31] Condicion Or Condicion"); :}
 
-condicion ::= expresion op_comp expresion {:System.out.println("[Regla 31] Expresion Operacion Logica Expresion"); :}
+condicion ::= expresion op_comp expresion {:System.out.println("[Regla 32] Expresion Operacion Logica Expresion"); :}
 
-op_comp ::= Mayor {:System.out.println("[Regla 32] Operacion Mayor"); :}
-			| MayorI {:System.out.println("[Regla 33] Operacion MayorI"); :}
-			| Menor {:System.out.println("[Regla 34] Operacion Menor"); :}
-			| MenorI {:System.out.println("[Regla 35] Operacion MenorI"); :}
-			| Distinto {:System.out.println("[Regla 36] Operacion Distinto"); :}
-			| Igual {:System.out.println("[Regla 37] Operacion Igual"); :}
+op_comp ::= Mayor {:System.out.println("[Regla 33] Operacion Mayor"); :}
+			| MayorI {:System.out.println("[Regla 34] Operacion MayorI"); :}
+			| Menor {:System.out.println("[Regla 35] Operacion Menor"); :}
+			| MenorI {:System.out.println("[Regla 36] Operacion MenorI"); :}
+			| Distinto {:System.out.println("[Regla 37] Operacion Distinto"); :}
+			| Igual {:System.out.println("[Regla 38] Operacion Igual"); :}
 
-declaracion ::= DeclareB listadedeclaraciones DeclareE {:System.out.println("[Regla 38] Declaracion"); :}
+declaracion ::= DeclareB listadedeclaraciones DeclareE {:System.out.println("[Regla 39] Declaracion"); :}
 
-listadedeclaraciones ::= CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 39] Lista de Declaraciones"); :}
+listadedeclaraciones ::= CorcheteA lineadedeclaracion CorcheteC {:System.out.println("[Regla 40] Lista de Declaraciones"); :}
 
-lineadedeclaracion ::= VarId CorcheteC asignacion CorcheteA tipo {:System.out.println("[Regla 40] Linea de declaracion"); :}
-			| VarId Coma lineadedeclaracion Coma {:System.out.println("[Regla 41] Linea de declaracion multiple"); :}
+lineadedeclaracion ::= VarId CorcheteC asignacion CorcheteA tipo {:System.out.println("[Regla 41] Linea de declaracion"); :}
+			| VarId Coma lineadedeclaracion Coma {:System.out.println("[Regla 42] Linea de declaracion multiple"); :}
 
-programa ::= ProgramB listadesentencias ProgramE {:System.out.println("[Regla 42] Programa"); :}
+programa ::= ProgramB listadesentencias ProgramE {:System.out.println("[Regla 43] Programa"); :}
 
-inlist ::= InList ParA VarId Coma CorcheteA listadecte CorcheteC ParC {:System.out.println("[Regla 43] InList"); :}
+inlist ::= InList ParA VarId Coma CorcheteA listadecte CorcheteC ParC {:System.out.println("[Regla 44] InList"); :}
 
-listadecte ::= listareal {:System.out.println("[Regla 44] Lista de Cte - Real"); :}
-			| listanumero {:System.out.println("[Regla 45] Lista de Cte - Numero"); :}
+listadecte ::= listareal {:System.out.println("[Regla 45] Lista de Cte - Real"); :}
+			| listanumero {:System.out.println("[Regla 46] Lista de Cte - Numero"); :}
 
-listareal ::= Real {:System.out.println("[Regla 46] Lista de Real"); :}
-			| listareal PuntoC Real {:System.out.println("[Regla 47] Lista de Real Multiple"); :}
+listareal ::= Real {:System.out.println("[Regla 47] Lista de Real"); :}
+			| listareal PuntoC Real {:System.out.println("[Regla 48] Lista de Real Multiple"); :}
 
-listanumero ::= Numero {:System.out.println("[Regla 48] Lista de Numero"); :}
-			| listanumero PuntoC Numero {:System.out.println("[Regla 49] Lista de Numero Multiple"); :}
+listanumero ::= Numero {:System.out.println("[Regla 49] Lista de Numero"); :}
+			| listanumero PuntoC Numero {:System.out.println("[Regla 50] Lista de Numero Multiple"); :}
