@@ -9,7 +9,7 @@ public class Main {
 		// TODO Auto-generated method stub
 		FileReader f;
 		try {
-			f = new FileReader("C:\\Users\\German\\Documents\\GitHub\\TPCompilador\\SegundaEntrega\\prueba.txt");
+			f = new FileReader("prueba.txt");
 			Lexico Lexer = new Lexico(f);
 			parser sintactico = new parser(Lexer);
 			sintactico.parse();
