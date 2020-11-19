@@ -1,4 +1,4 @@
-</ prueba.txt />
+</ prueba.txt 	nombre.txt/>
 
 </ Recuerden modificar de este archivo todo componente lexico que definieron
 diferente en su lenguaje, como operador de asignacion, apertura y cierre de
@@ -6,7 +6,7 @@ ciclos y condicionales, operadores logicos, nombres de tipos, etc. />
 
 
 DECLARE
-[suma, contador, d1] := [FLOAT, INT, FLOAT]
+[suma, contador, d1] := [FLOAT, INT, FLOA]
 [actual, contar, palabra] := [FLOAT, FLOAT, STRING]
 [var] := [INT]
 ENDDECLARE

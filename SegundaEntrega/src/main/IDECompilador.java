@@ -38,6 +38,7 @@ public class IDECompilador extends JFrame {
 	private JTextField txtNombre;
 	private FileReader fr;
 	private File archivo;
+	private String path;
 
 	/**
 	 * Launch the application.
@@ -112,6 +113,7 @@ public class IDECompilador extends JFrame {
 				JFileChooser fc = new JFileChooser();
 				fc.showOpenDialog(null);
 				archivo = fc.getSelectedFile();
+				path = archivo.getAbsolutePath();
 				String nombre = archivo.getName();
 				txtNombre.setText(nombre);
 				
@@ -181,8 +183,8 @@ public class IDECompilador extends JFrame {
 					JOptionPane.showMessageDialog(null,"No hay archivo cargado");
 				}else {
 					saveFile(txaArchivo,false);
-					Lexico Lexer = new Lexico(fr);
-					parser sintactico = new parser(Lexer);
+					Lexico lexer = new Lexico(fr);
+					parser sintactico = new parser(lexer);
 					try {		
 						sintactico.parse();
 						resultadoAnalisis.setText(sintactico.s);
@@ -191,7 +193,12 @@ public class IDECompilador extends JFrame {
 						JOptionPane.showMessageDialog(null,"Error");
 					} catch (Exception e2) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null,sintactico.Error);
+						if (!sintactico.Error.isEmpty()) {
+							JOptionPane.showMessageDialog(null,sintactico.Error);
+						}
+						if (!lexer.Error.isEmpty()) {
+							JOptionPane.showMessageDialog(null,lexer.Error);
+						}
 					}
 				}	
 			}
@@ -210,17 +217,22 @@ public class IDECompilador extends JFrame {
 					JOptionPane.showMessageDialog(null,"No hay archivo cargado");
 				}else {
 					saveFile(txaArchivo,false);
-					Lexico Lexer = new Lexico(fr);
-					parser sintactico = new parser(Lexer);
+					Lexico lexer = new Lexico(fr);
+					parser sintactico = new parser(lexer);
 					try {
 						sintactico.parse();
-						resultadoAnalisis.setText(Lexer.s);
+						resultadoAnalisis.setText(lexer.s);
 						fr = new FileReader(archivo);
 					} catch (IOException e1) {
 						JOptionPane.showMessageDialog(null,"Error");
 					} catch (Exception e2) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null,Lexer.Error);
+						if (!sintactico.Error.isEmpty()) {
+							JOptionPane.showMessageDialog(null,sintactico.Error);
+						}
+						if (!lexer.Error.isEmpty()) {
+							JOptionPane.showMessageDialog(null,lexer.Error);
+						}
 					}
 				}	
 			}
@@ -250,12 +262,14 @@ public class IDECompilador extends JFrame {
 	
 	public void saveFile(TextArea txaArchivo, Boolean jopt) {
 		String nombreArchivo = txtNombre.getText();
-		String carpeta = System.getProperty("user.dir");
-		String rutaArchivo = carpeta + "/" + nombreArchivo;
+		if (path == null) {
+			String carpeta = System.getProperty("user.dir");
+			path = carpeta + "/" + nombreArchivo;
+		}
 		
 		FileWriter fw = null;
 		try {
-			fw = new FileWriter(rutaArchivo);
+			fw = new FileWriter(path);
 		}catch(IOException ex) {
 			Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,ex);
 		}
@@ -263,14 +277,14 @@ public class IDECompilador extends JFrame {
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(txaArchivo.getText());
 			bw.close();
-			fr = new FileReader(rutaArchivo);
+			fr = new FileReader(path);
 			if(jopt) {
 				JOptionPane.showMessageDialog(null, "Archivo guardado correctamente");
 			}
 		}catch (Exception ex){
 			
 		}
-			
+		path = null;
 	}
 
 }

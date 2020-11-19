@@ -333,7 +333,7 @@ public class parser extends java_cup.runtime.lr_parser {
 		try{
 			
 			f = new File("ts.txt");
-			bw = new BufferedWriter(new FileWriter(f,true));
+			bw = new BufferedWriter(new FileWriter(f,false));
 		}catch (IOException e){
 			e.printStackTrace();
 		}
