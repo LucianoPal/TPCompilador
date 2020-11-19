@@ -13,13 +13,12 @@ public class Main {
 			Lexico Lexer = new Lexico(f);
 			parser sintactico = new parser(Lexer);
 			sintactico.parse();
-			Lexer.next_token();
+			//Lexer.next_token();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("No hay un archivo para analizar");
 		} catch (Exception e) {
 			System.out.println("ERROR");
-			e.printStackTrace();
 		}
 		
 	}

@@ -180,10 +180,10 @@ public class IDECompilador extends JFrame {
 				if (fr == null) {
 					JOptionPane.showMessageDialog(null,"No hay archivo cargado");
 				}else {
-					try {
-						saveFile(txaArchivo,false);
-						Lexico Lexer = new Lexico(fr);
-						parser sintactico = new parser(Lexer);
+					saveFile(txaArchivo,false);
+					Lexico Lexer = new Lexico(fr);
+					parser sintactico = new parser(Lexer);
+					try {		
 						sintactico.parse();
 						resultadoAnalisis.setText(sintactico.s);
 						fr = new FileReader(archivo);
@@ -191,7 +191,7 @@ public class IDECompilador extends JFrame {
 						JOptionPane.showMessageDialog(null,"Error");
 					} catch (Exception e2) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null,e2.toString().substring(21));
+						JOptionPane.showMessageDialog(null,sintactico.Error);
 					}
 				}	
 			}
@@ -209,10 +209,10 @@ public class IDECompilador extends JFrame {
 				if (fr == null) {
 					JOptionPane.showMessageDialog(null,"No hay archivo cargado");
 				}else {
+					saveFile(txaArchivo,false);
+					Lexico Lexer = new Lexico(fr);
+					parser sintactico = new parser(Lexer);
 					try {
-						saveFile(txaArchivo,false);
-						Lexico Lexer = new Lexico(fr);
-						parser sintactico = new parser(Lexer);
 						sintactico.parse();
 						resultadoAnalisis.setText(Lexer.s);
 						fr = new FileReader(archivo);
@@ -220,7 +220,7 @@ public class IDECompilador extends JFrame {
 						JOptionPane.showMessageDialog(null,"Error");
 					} catch (Exception e2) {
 						// TODO Auto-generated catch block
-						JOptionPane.showMessageDialog(null,e2.toString().substring(21));
+						JOptionPane.showMessageDialog(null,Lexer.Error);
 					}
 				}	
 			}

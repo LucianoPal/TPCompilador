@@ -470,20 +470,9 @@ public class Lexico implements java_cup.runtime.Scanner {
   private boolean zzEOFDone;
 
   /* user code: */
-	BufferedWriter bw;
-	File f;
-	ArrayList<String> listaSimbolos;
-	
-	public void writeSymbolTable(String s) throws IOException{
-		if(!listaSimbolos.contains(s.split(",")[0])){
-			bw.write(s);
-			bw.newLine();
-			bw.flush();
-			listaSimbolos.add(s.split(",")[0]);
-		}
-	}
 	
 	public String s = "";
+	public String Error = "";
 	final int MAX_STRING = 30;
 	final int MAX_INT = Short.MAX_VALUE;
 	final float MAX_FLOAT = Float.MAX_VALUE;
@@ -491,6 +480,7 @@ public class Lexico implements java_cup.runtime.Scanner {
 	private boolean verify_real(String x) throws Exception {
 		float f = Float.parseFloat(x);
 		if (f < -MAX_FLOAT || f > MAX_FLOAT) {
+			Error="La longitud del lexema "+x+" excede la esperada";
 			throw new Exception("La longitud del lexema "+x+" excede la esperada");
 		}
 		return true;
@@ -500,9 +490,11 @@ public class Lexico implements java_cup.runtime.Scanner {
 		try {
 			int i = Integer.parseInt(x);
 			if (i < -MAX_INT || i > MAX_INT) {
+				Error="La longitud del lexema "+x+" excede la esperada";
 				throw new Exception("La longitud del lexema "+x+" excede la esperada");
 			}
 		}catch (NumberFormatException e) {
+			Error="La longitud del lexema "+x+" excede la esperada";
 			throw new Exception("La longitud del lexema "+x+" excede la esperada");
 		}
 		return true;
@@ -510,6 +502,7 @@ public class Lexico implements java_cup.runtime.Scanner {
 
 	private boolean verify_string(String x) throws Exception {
 		if (x.length() > MAX_STRING) {
+			Error="La longitud del lexema "+x+" excede la esperada";
 			throw new Exception("La longitud del lexema "+x+" excede la esperada");
 		}
 		return true;
@@ -522,15 +515,7 @@ public class Lexico implements java_cup.runtime.Scanner {
    * @param   in  the java.io.Reader to read input from.
    */
   public Lexico(java.io.Reader in) {
-  	try{
-		String carpeta = System.getProperty("user.dir");
-		String ruta = carpeta + "/ts.txt";
-		f = new File(ruta);
-		bw = new BufferedWriter(new FileWriter(f,true));
-		listaSimbolos = new ArrayList<>();
-	}catch (IOException e){
-		e.printStackTrace();
-	}
+  
     this.zzReader = in;
   }
 
@@ -935,7 +920,8 @@ public class Lexico implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { throw new Error("Caracter no permitido: <" + yytext() + "> en la linea " + yyline);
+            { 	Error="Caracter no permitido: <" + yytext() + "> en la linea " + yyline;
+            	throw new Error("Caracter no permitido: <" + yytext() + "> en la linea " + yyline);
             }
             // fall through
           case 41: break;
@@ -989,7 +975,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 10:
             { verify_int(yytext());
 							s=s+"Token Numero encontrado, Lexema "+ yytext()+"\n";
-							writeSymbolTable("_"+ yytext() + ",Numero,,"+ yytext()+ ",");
+							//writeSymbolTable("_"+ yytext() + ",Numero,,"+ yytext()+ ",");
 							return new Symbol(sym.Numero,yytext());
             }
             // fall through
@@ -1020,7 +1006,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 54: break;
           case 15:
             { s=s+"Token VarId encontrado, Lexema "+ yytext()+"\n";
-						writeSymbolTable(yytext() + ",VarId,,"+",");
+						//writeSymbolTable(yytext() + ",VarId,,"+",");
 						return new Symbol(sym.VarId,yytext());
             }
             // fall through
@@ -1052,7 +1038,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 20:
             { verify_string(yytext());						
 							s=s+"Token Const_String encontrado, Lexema "+ yytext()+"\n";
-							writeSymbolTable("_"+ yytext() + ",Const_String,,"+ yytext()+ ","+ yytext().length());
+							//writeSymbolTable("_"+ yytext() + ",Const_String,,"+ yytext()+ ","+ yytext().length());
 							return new Symbol(sym.Const_String,yytext());
             }
             // fall through
@@ -1066,7 +1052,7 @@ public class Lexico implements java_cup.runtime.Scanner {
           case 22:
             { verify_real(yytext());
 							s=s+"Token Real encontrado, Lexema "+ yytext()+"\n";
-							writeSymbolTable("_"+ yytext() + ",Real,,"+ yytext()+ ",");
+							//writeSymbolTable("_"+ yytext() + ",Real,,"+ yytext()+ ",");
 							return new Symbol(sym.Real,yytext());
             }
             // fall through

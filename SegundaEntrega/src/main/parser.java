@@ -5,9 +5,14 @@
 
 package main;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java_cup.runtime.*;
+import java_cup.runtime.XMLElement;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -271,11 +276,89 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 
+	BufferedWriter bw;
+	File f;
 	String s = "";
-    public void syntax_error(Symbol s){
+	String Error = "";
+	ArrayList<String> listaVarId = new ArrayList<String>();
+	ArrayList<String> listaTipos = new ArrayList<String>();
+	ArrayList<String> listaSimbolos = new ArrayList<String>();
+	ArrayList<String> listaSimbolosNombre = new ArrayList<String>();
+	
+    public void syntax_error(Symbol s) {
         System.out.println("Error en la linea " + (s.right+1) + " columna " + s.left + ". "
             + s + " no reconocido. valor " + s.value );
+        Error = "Error en la linea " + (s.right+1) + " columna " + s.left + ". "
+                + s + " no reconocido. valor " + s.value ;
+     
     }
+    public void writeSymbolTable2(){
+    try{
+			
+			f = new File("ts.txt");
+			bw = new BufferedWriter(new FileWriter(f,true));
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+	
+		String Linea = "";	
+
+		for (int i = 0; i < listaSimbolos.size(); i++) {
+			String A = listaSimbolos.get(i);
+			String B = listaSimbolosNombre.get(i);
+			if (B=="Const_String"){
+				Linea="_"+A+","+B+",,"+A+","+A.length();
+			}else{
+				Linea="_"+A+","+B+",,"+A+",";
+			}
+			
+ 			try {
+				bw.write(Linea);
+				bw.newLine();
+				bw.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		listaVarId.clear();
+		listaTipos.clear();
+		//listaSimbolos.add(s.split(",")[0]);	
+	}
+    
+    
+	public void writeSymbolTable(){
+		try{
+			
+			f = new File("ts.txt");
+			bw = new BufferedWriter(new FileWriter(f,true));
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+	
+		String Linea = "";	
+		int j = listaTipos.size();
+		for (int i = 0; i < listaVarId.size(); i++) {
+			String ID = listaVarId.get(i);
+			String T = listaTipos.get(--j);
+			Linea=ID+",VarId,"+T+",,";
+ 			try {
+				bw.write(Linea);
+				bw.newLine();
+				bw.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+		listaVarId.clear();
+		listaTipos.clear();
+		//listaSimbolos.add(s.split(",")[0]);	
+	}
 
 
 
@@ -326,6 +409,8 @@ class CUP$parser$actions {
               Object RESULT =null;
 		 System.out.println("pgm Regla 0 Compila correctamente llegando al simbolo start");
 							s = s + "pgm Regla 0 Compila correctamente llegando al simbolo start\n";
+							writeSymbolTable2();
+							
               CUP$parser$result = parser.getSymbolFactory().newSymbol("pgm",0, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -394,8 +479,12 @@ class CUP$parser$actions {
           case 8: // tipo ::= PInt 
             {
               Object RESULT =null;
+		int inleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int inright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object in = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 7] Tipo - INT"); 
 							s = s + "[Regla 7] Tipo - INT\n";
+							listaTipos.add(in.toString());
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -404,8 +493,12 @@ class CUP$parser$actions {
           case 9: // tipo ::= PFloat 
             {
               Object RESULT =null;
+		int flleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int flright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object fl = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 8] Tipo - FLOAT"); 
 							s = s + "[Regla 8] Tipo - FLOAT\n";
+							listaTipos.add(fl.toString());
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -414,8 +507,12 @@ class CUP$parser$actions {
           case 10: // tipo ::= PString 
             {
               Object RESULT =null;
+		int stleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object st = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 9] Tipo - STRING"); 
 							s = s + "[Regla 9] Tipo - STRING\n";
+							listaTipos.add(st.toString());
               CUP$parser$result = parser.getSymbolFactory().newSymbol("tipo",3, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -494,8 +591,13 @@ class CUP$parser$actions {
           case 18: // asignacion ::= VarId Asignacion Const_String 
             {
               Object RESULT =null;
+		int csleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int csright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object cs = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 17] Asignacion String"); 
 							s = s + "[Regla 17] Asignacion String\n";
+							listaSimbolos.add(cs.toString());
+							listaSimbolosNombre.add("Const_String");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("asignacion",7, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -574,8 +676,13 @@ class CUP$parser$actions {
           case 26: // factor ::= Numero 
             {
               Object RESULT =null;
+		int nuleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int nuright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object nu = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 25] Factor Numero"); 
 							s = s + "[Regla 25] Factor Numero\n";
+							listaSimbolos.add(nu.toString());
+							listaSimbolosNombre.add("Numero");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",10, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -584,8 +691,13 @@ class CUP$parser$actions {
           case 27: // factor ::= Real 
             {
               Object RESULT =null;
+		int releft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int reright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object re = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 26] Factor Real"); 
 							s = s + "[Regla 26] Factor Real\n";
+							listaSimbolos.add(re.toString());
+							listaSimbolosNombre.add("Real");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("factor",10, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -604,8 +716,13 @@ class CUP$parser$actions {
           case 29: // salida ::= Print Const_String 
             {
               Object RESULT =null;
+		int csleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int csright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object cs = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 28] Factor Expresion"); 
 							s = s + "[Regla 28] Factor Expresion\n";
+							listaSimbolos.add(cs.toString());
+							listaSimbolosNombre.add("Const_String");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("salida",11, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-1)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -746,6 +863,7 @@ class CUP$parser$actions {
               Object RESULT =null;
 		System.out.println("[Regla 42] Lista de Declaraciones"); 
 							s = s + "[Regla 42] Lista de Declaraciones\n";
+							writeSymbolTable();
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listadedeclaraciones",16, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -756,6 +874,7 @@ class CUP$parser$actions {
               Object RESULT =null;
 		System.out.println("[Regla 43] Lista de Declaraciones multiples"); 
 							s = s + "[Regla 43] Lista de Declaraciones multiples\n";
+							writeSymbolTable();
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listadedeclaraciones",16, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-3)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -764,8 +883,15 @@ class CUP$parser$actions {
           case 45: // lineadedeclaracion ::= VarId CorcheteC Asignacion CorcheteA tipo 
             {
               Object RESULT =null;
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).right;
+		Object id = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-4)).value;
+		int tileft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int tiright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object ti = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 44] Linea de declaracion"); 
 							s = s + "[Regla 44] Linea de declaracion\n";
+							listaVarId.add(id.toString());
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lineadedeclaracion",17, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -774,8 +900,12 @@ class CUP$parser$actions {
           case 46: // lineadedeclaracion ::= VarId Coma lineadedeclaracion Coma tipo 
             {
               Object RESULT =null;
+		int idleft = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)).right;
+		Object id = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.elementAt(CUP$parser$top-4)).value;
 		System.out.println("[Regla 45] Linea de declaracion multiple"); 
 							s = s + "[Regla 45] Linea de declaracion multiple\n";
+							listaVarId.add(id.toString());
               CUP$parser$result = parser.getSymbolFactory().newSymbol("lineadedeclaracion",17, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-4)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -824,8 +954,13 @@ class CUP$parser$actions {
           case 51: // listareal ::= Real 
             {
               Object RESULT =null;
+		int releft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int reright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object re = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 50] Lista de Real"); 
 							s = s + "[Regla 50] Lista de Real\n";
+							listaSimbolos.add(re.toString());
+							listaSimbolosNombre.add("Real");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listareal",21, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -834,8 +969,13 @@ class CUP$parser$actions {
           case 52: // listareal ::= listareal PuntoC Real 
             {
               Object RESULT =null;
+		int releft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int reright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object re = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 51] Lista de Real Multiple"); 
 							s = s + "[Regla 51] Lista de Real Multiple\n";
+							listaSimbolos.add(re.toString());
+							listaSimbolosNombre.add("Real");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listareal",21, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -844,8 +984,13 @@ class CUP$parser$actions {
           case 53: // listanumero ::= Numero 
             {
               Object RESULT =null;
+		int nuleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int nuright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object nu = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 52] Lista de Numero"); 
 							s = s + "[Regla 52] Lista de Numero\n";
+							listaSimbolos.add(nu.toString());
+							listaSimbolosNombre.add("Numero");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listanumero",22, ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
@@ -854,8 +999,13 @@ class CUP$parser$actions {
           case 54: // listanumero ::= listanumero PuntoC Numero 
             {
               Object RESULT =null;
+		int nuleft = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).left;
+		int nuright = ((java_cup.runtime.Symbol)CUP$parser$stack.peek()).right;
+		Object nu = (Object)((java_cup.runtime.Symbol) CUP$parser$stack.peek()).value;
 		System.out.println("[Regla 53] Lista de Numero Multiple"); 
 							s = s + "[Regla 53] Lista de Numero Multiple\n";
+							listaSimbolos.add(nu.toString());
+							listaSimbolosNombre.add("Numero");
               CUP$parser$result = parser.getSymbolFactory().newSymbol("listanumero",22, ((java_cup.runtime.Symbol)CUP$parser$stack.elementAt(CUP$parser$top-2)), ((java_cup.runtime.Symbol)CUP$parser$stack.peek()), RESULT);
             }
           return CUP$parser$result;
