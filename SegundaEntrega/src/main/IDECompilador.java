@@ -200,6 +200,7 @@ public class IDECompilador extends JFrame {
 							JOptionPane.showMessageDialog(null,lexer.Error);
 						}
 					}
+					path = null;
 				}	
 			}
 		});
@@ -216,7 +217,7 @@ public class IDECompilador extends JFrame {
 				if (fr == null) {
 					JOptionPane.showMessageDialog(null,"No hay archivo cargado");
 				}else {
-					saveFile(txaArchivo,false);
+					//saveFile(txaArchivo,false);
 					Lexico lexer = new Lexico(fr);
 					parser sintactico = new parser(lexer);
 					try {
@@ -234,6 +235,7 @@ public class IDECompilador extends JFrame {
 							JOptionPane.showMessageDialog(null,lexer.Error);
 						}
 					}
+					path = null;
 				}	
 			}
 		});
@@ -253,25 +255,28 @@ public class IDECompilador extends JFrame {
 		gbc_lblResutadosDelAnlisis.gridx = 1;
 		gbc_lblResutadosDelAnlisis.gridy = 8;
 		contentPane.add(lblResutadosDelAnlisis, gbc_lblResutadosDelAnlisis);
-		
-
-		
 	
-
 	}
 	
 	public void saveFile(TextArea txaArchivo, Boolean jopt) {
 		String nombreArchivo = txtNombre.getText();
-		if (path == null) {
+		if (archivo == null) {
 			String carpeta = System.getProperty("user.dir");
 			path = carpeta + "/" + nombreArchivo;
+		}else {
+			if (!archivo.getName().equals(nombreArchivo)) {
+				String carpeta = System.getProperty("user.dir");
+				path = carpeta + "/" + nombreArchivo;
+			}else {
+				path = archivo.getAbsolutePath();
+			}
 		}
 		
 		FileWriter fw = null;
 		try {
 			fw = new FileWriter(path);
 		}catch(IOException ex) {
-			Logger.getLogger(Main.class.getName()).log(Level.SEVERE,null,ex);
+			JOptionPane.showMessageDialog(null, "No hay ningun archivo");
 		}
 		try { 
 			BufferedWriter bw = new BufferedWriter(fw);

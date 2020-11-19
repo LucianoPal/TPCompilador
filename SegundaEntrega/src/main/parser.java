@@ -276,10 +276,11 @@ public class parser extends java_cup.runtime.lr_parser {
 
 
 
-	BufferedWriter bw;
-	File f;
+	static File f = new File("ts.txt");
+	private static BufferedWriter bw;
 	String s = "";
 	String Error = "";
+	boolean b=false;
 	ArrayList<String> listaVarId = new ArrayList<String>();
 	ArrayList<String> listaTipos = new ArrayList<String>();
 	ArrayList<String> listaSimbolos = new ArrayList<String>();
@@ -293,9 +294,7 @@ public class parser extends java_cup.runtime.lr_parser {
      
     }
     public void writeSymbolTable2(){
-    try{
-			
-			f = new File("ts.txt");
+    	try{
 			bw = new BufferedWriter(new FileWriter(f,true));
 		}catch (IOException e){
 			e.printStackTrace();
@@ -331,9 +330,13 @@ public class parser extends java_cup.runtime.lr_parser {
     
 	public void writeSymbolTable(){
 		try{
+			if (!b) {
+				bw = new BufferedWriter(new FileWriter(f,false));
+				b=true;
+			} else {
+				bw = new BufferedWriter(new FileWriter(f,true));
+			}
 			
-			f = new File("ts.txt");
-			bw = new BufferedWriter(new FileWriter(f,false));
 		}catch (IOException e){
 			e.printStackTrace();
 		}
