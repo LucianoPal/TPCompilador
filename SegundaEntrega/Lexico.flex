@@ -74,6 +74,7 @@ PInt = INT
 PFloat = FLOAT
 PString = STRING
 VarId = {Nombre}
+ComentarioAnidado = "</" ~ {Comentario} ~ "/>"
 Comentario = "</" ~"/>"
 
 And = "&&" | and | AND
@@ -116,6 +117,8 @@ Const_String = {Comilla} ({Letra}|{Digito}|{CaracterEspecial}|{EspacioBlanco})* 
 <YYINITIAL> {
 
 {Comentario}			{/**/}
+
+{ComentarioAnidado}			{/**/}
 
 {While} 				{
 						s=s+"Token While encontrado, Lexema "+ yytext()+"\n";
